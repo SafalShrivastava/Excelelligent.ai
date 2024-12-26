@@ -1,0 +1,192 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    position: relative; /* For positioning child elements */
+}
+
+header h1 img {
+    height: 40px;
+}
+
+header .user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header .user-info span {
+    font-size: 14px;
+    color: #333;
+}
+
+header .user-info .icons {
+    display: flex;
+    gap: 15px;
+}
+
+header .user-info .icons .icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+/* Positioning MY UPLOAD VIDEOS Button */
+header img.upload-button {
+    position: absolute;
+    top: 10px; /* Adjust distance from top */
+    right: 20px; /* Adjust distance from right */
+    width: 120px; /* Adjust image size */
+    cursor: pointer; /* Make it clickable */
+}
+
+/* Main Layout */
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+.details,
+.preview {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1;
+}
+
+.details h2 {
+    color: #ff9900;
+}
+
+.details p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.details form {
+    display: flex;
+    flex-direction: column;
+}
+
+.details label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.details input,
+.details select,
+.details textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 2px dashed #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.file-upload label {
+    background-color: #ff9900;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.actions .cancel {
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions .submit {
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.preview h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+video {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.thumbnails {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.thumbnails img {
+    width: 80px;
+    height: 60px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-analysis {
+    background-color: #ff9900;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    margin-top: 20px;
+}

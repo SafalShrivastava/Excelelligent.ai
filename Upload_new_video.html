@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload New Video</title>
+    <link rel="stylesheet" href="src/upload_new_video.css">
+</head>
+<body>
+    <header>
+        <h1><img src="../src/img/EXVision_Logo_Black_Transparent.png" alt="Robot Eye" class="background-image"></h1>
+        <div class="user-info">
+            <span>pranoliver@gmail.com</span>
+            <div class="icons">
+                <img src="../src/img/settings.png" alt="Settings" class="icon">
+                <img src="../src/img/logout.png" alt+="Logout" class="icon">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="details">
+            <img src="../src/img/my_upload_videos.png"alt="Upload Button">
+            <h2>Details</h2>
+            <p>Fill the below details to upload the video</p>
+            <form>
+                <div class="file-upload">
+                    <label for="file-input">Choose file</label>
+                    <input type="file" id="file-input">
+                    <p>Upload your video file or drop here</p>
+                </div>
+                <label for="title">Title</label>
+                <input type="text" id="title" placeholder="Enter video title">
+                <label for="category">Pre-defined category</label>
+                <select id="category">
+                    <option>Select pre-defined prompt</option>
+                </select>
+                <label for="prompts">Pre-defined prompts</label>
+                <select id="prompts">
+                    <option>Select pre-defined prompt</option>
+                </select>
+                <label for="prompt-text">Prompt text</label>
+                <textarea id="prompt-text" placeholder="Prompt"></textarea>
+                <label for="interval">Interval (Seconds)</label>
+                <input type="number" id="interval" value="1">
+                <label for="accuracy-threshold">Accuracy threshold</label>
+                <input type="range" id="accuracy-threshold" min="0" max="1" step="0.1">
+                <div class="actions">
+                    <button type="button" class="cancel">CANCEL</button>
+                    <button type="submit" class="submit">SUBMIT</button>
+                </div>
+            </form>
+        </section>
+        <section class="preview">
+            <h2>Preview video</h2>
+            <div class="video-container">
+                <video src="#" controls></video>
+                <div class="thumbnails">
+                    <img src="https://via.placeholder.com/100" alt="Thumbnail 1">
+                    <img src="https://via.placeholder.com/100" alt="Thumbnail 2">
+                    <img src="https://via.placeholder.com/100" alt="Thumbnail 3">
+                    <img src="https://via.placeholder.com/100" alt="Thumbnail 4">
+                </div>
+                <button class="save-analysis">SAVE ANALYSIS</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Excelligent.ai © 2024. All rights reserved.</p>
+    </footer>
+</body>
+</html>
