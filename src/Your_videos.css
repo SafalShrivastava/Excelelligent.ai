@@ -34,34 +34,35 @@ header .user-info span {
 }
 
 .container {
-    padding: 20px;
+    padding: 100px;
 }
 
 .container h2 {
     margin-bottom: 50px;
 }
 
-.container button {
+button {
     font-size: 24px;
     color: #ff9900;
     float: right;
     margin-right: 10px;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     gap: 10px;
 }
 
-.container .prompt-hub {
+.prompt-hub {
     background-color: #000;
     color: #fff;
-    margin-right: 10px;
+    margin-right: 100px;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+
 }
 
-.container .new-videos {
+.new-videos {
     background-color: #ff9900;
     color: #fff;
     padding: 10px 15px;

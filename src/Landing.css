@@ -5,14 +5,15 @@ body {
     padding: 0;
     background-color: #000;
     color: #fff;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Header */
 .header {
     display: flex;
-    justify-content: flex-end; /* Align buttons to the top-right */
-    padding: 20px 40px;
-    position: absolute; /* Position at the top-right corner */
+    justify-content: flex-end;
+    padding: 35px 40px;
+    position: absolute;
     top: 0;
     right: 0;
     width: 100%;
@@ -25,9 +26,10 @@ body {
 }
 
 .button {
+    height: 51px;
     padding: 10px 20px;
     border: 1px solid #fff;
-    border-radius: 20px;
+    border-radius: 30px;
     color: #fff;
     background: transparent;
     cursor: pointer;
@@ -57,13 +59,24 @@ body {
     background-size: cover;
     background-position: center;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: column;
+    padding-top: 20px;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 250px;
+    z-index: 100;
+    text-align: center;
 }
 
 .logo img {
-    max-width: 80%;
+    height: auto;
+    width: 276.08px;
+    max-width: 100%;
 }
 
 /* Right Section */
@@ -73,18 +86,33 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: #0A0809;
 }
-
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .intro-box {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards; /* Add animation */
+    animation-delay: 0.5s; /* The intro box appears first with a slight delay */
 }
 
 .intro-box h1 {
     font-size: 32px;
     line-height: 1.5;
+    text-align: left;
 }
 
 .highlight {
@@ -100,6 +128,20 @@ body {
     margin-bottom: 20px;
     font-size: 18px;
     line-height: 1.6;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards; /* Add animation */
+}
+/* Add delay for each item in the list */
+.features-list li:nth-child(1) {
+    animation-delay: 1.5s; /* Delay the first item to appear after intro box */
+}
+
+.features-list li:nth-child(2) {
+    animation-delay: 2s; /* Delay the second item */
+}
+
+.features-list li:nth-child(3) {
+    animation-delay: 2.5s; /* Delay the third item */
 }
 
 /* Footer */
@@ -112,17 +154,81 @@ body {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .main {
-        flex-direction: column;
+    body {
+        font-size: 16px;
     }
 
     .header {
-        position: static; /* Reset header position for small screens */
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px;
+        position: static; /* Remove absolute positioning */
     }
 
-    .left-section,
+    .header-buttons {
+        gap: 10px;
+    }
+
+    .logo {
+        position: static; /* Remove absolute positioning */
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .main {
+        flex-direction: column;
+        height: auto; /* Allow height to adjust dynamically */
+    }
+
+    .left-section {
+        width: 100%;
+        height: auto; /* Let content define the height */
+        padding: 20px;
+        background-size: cover;
+    }
+
     .right-section {
         width: 100%;
+        padding: 20px;
+    }
+
+    .intro-box h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .features-list li {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .header-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .intro-box h1 {
+        font-size: 20px;
+    }
+
+    .features-list li {
+        font-size: 14px;
+    }
+
+    .button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .footer {
+        font-size: 12px;
     }
 }
