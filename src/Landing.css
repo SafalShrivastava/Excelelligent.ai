@@ -152,227 +152,162 @@ body {
     text-align: center;
     padding: 10px;
 }
-/* Responsive Footer Adjustments */
-@media (max-width: 768px) {
-    footer {
-        font-size: 12px;
-        padding: 8px 15px;
+/* Responsive Breakpoints */
+/* Large Screens (1200px and down) */
+@media (max-width: 1200px) {
+    .logo {
+        top: 100px;
+        left: 30px;
+    }
+    
+    .intro-box {
+        max-width: 550px;
     }
 }
 
-@media (max-width: 480px) {
-    footer {
-        font-size: 10px;
-        padding: 6px 10px;
-    }
-}
-
-@media (max-width: 1024px) {
-    body {
-        font-size: 18px;
-    }
-
-    .header {
-        padding: 20px;
-        justify-content: center;
-    }
-
-    .logo img {
-        width: 200px; /* Reduce logo size */
-    }
-
+/* Medium Screens (992px and down) */
+@media (max-width: 992px) {
     .main {
         flex-direction: column;
-        align-items: center;
     }
-
-    .left-section, .right-section {
+    
+    .left-section,
+    .right-section {
         width: 100%;
-        height: auto; /* Allow sections to adjust dynamically */
     }
-
-    .intro-box h1 {
-        font-size: 28px;
+    
+    .left-section {
+        height: 60vh; /* Increased height for better image display */
+        min-height: 500px;
+        background-position: top center;
     }
-
-    .features-list li {
-        font-size: 18px;
+    
+    .right-section {
+        padding-top: 40px;
+        align-items: center; /* Center content on mobile */
     }
-
-    .button {
-        padding: 12px 18px;
-        font-size: 16px;
+    
+    .logo {
+        top: auto;
+        bottom: 40px;
+        left: 40px;
+    }
+    
+    .header {
+        background-color: rgba(0,0,0,0.8);
+    }
+    
+    .intro-box {
+        max-width: 500px;
     }
 }
 
-/* Responsive Styles for Small Screens */
+/* Tablet (768px and down) */
 @media (max-width: 768px) {
-    body {
-        font-size: 16px;
-    }
-
     .header {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px 20px;
+        padding: 20px;
     }
-
+    
     .header-buttons {
+        width: 100%;
+        justify-content: center;
         gap: 10px;
     }
-
-    .logo {
-        margin: 20px 0;
-        text-align: center;
-    }
-
-    .main {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .left-section, .right-section {
-        width: 100%;
-        padding: 20px;
-        height: auto;
-    }
-
-    .intro-box h1 {
-        font-size: 24px;
-        text-align: center;
-    }
-
-    .features-list li {
-        font-size: 16px;
-        text-align: center;
-    }
-
+    
     .button {
+        height: 45px;
         padding: 8px 16px;
         font-size: 14px;
     }
+    
+    .left-section {
+        height: 50vh;
+        min-height: 400px;
+    }
+    
+    .logo {
+        left: 20px;
+        bottom: 30px;
+    }
+    
+    .logo img {
+        width: 220px;
+    }
+    
+    .intro-box {
+        max-width: 450px;
+        padding: 25px;
+    }
 }
 
-/* For Very Small Screens (Mobile) */
-@media (max-width: 480px) {
-    body {
-        font-size: 14px;
-    }
-
+/* Mobile (576px and down) */
+@media (max-width: 576px) {
     .header-buttons {
         flex-direction: column;
-        align-items: center;
-        gap: 8px;
+        align-items: stretch;
     }
-
-    .logo img {
-        width: 150px;
-    }
-
-    .intro-box {
-        padding: 15px;
-    }
-
-    .intro-box h1 {
-        font-size: 20px;
-    }
-
-    .features-list li {
-        font-size: 14px;
-    }
-
+    
     .button {
-        font-size: 12px;
-        padding: 6px 12px;
+        width: 100%;
+        text-align: center;
     }
-
-    .footer {
-        font-size: 12px;
-        padding: 10px;
+    
+    .left-section {
+        height: 45vh;
+        min-height: 350px;
+        background-position: top center;
     }
-}
-
-/* Ultra-Small Screens (Extra Responsive) */
-@media (max-width: 320px) {
-    body {
-        font-size: 12px;
+    
+    .logo {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
     }
-
-    .header {
-        padding: 5px 10px;
-    }
-
-    .header-buttons {
-        gap: 5px;
-    }
-
-    .logo img {
-        width: 120px;
-    }
-
-    .main {
-        padding: 10px;
-    }
-
-    .intro-box {
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .intro-box h1 {
-        font-size: 16px;
-    }
-
-    .features-list li {
-        font-size: 12px;
-    }
-
-    .button {
-        font-size: 10px;
-        padding: 4px 8px;
-    }
-
-    .footer {
-        font-size: 10px;
-        padding: 8px;
-    }
-}
-
-/* Landscape Orientation for Tablets and Mobile Devices */
-@media (max-width: 768px) and (orientation: landscape) {
-    body {
-        font-size: 15px;
-    }
-
-    .header {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 15px;
-    }
-
+    
     .logo img {
         width: 180px;
     }
+    
+    .intro-box {
+        max-width: 100%;
+        margin: 0 15px;
+    }
+}
 
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
     .main {
         flex-direction: row;
     }
-
-    .left-section, .right-section {
+    
+    .left-section,
+    .right-section {
         width: 50%;
-        height: 100%;
+        height: 100vh;
     }
-
-    .intro-box h1 {
-        font-size: 22px;
+    
+    .left-section {
+        background-position: center;
     }
-
-    .features-list li {
-        font-size: 14px;
+    
+    .logo {
+        top: auto;
+        bottom: 20px;
+        left: 20px;
+        transform: none;
     }
-
-    .button {
-        font-size: 12px;
-        padding: 6px 12px;
+    
+    .right-section {
+        padding: 80px 20px 20px;
+        align-items: center;
+    }
+    
+    .intro-box {
+        max-width: 400px;
+        padding: 20px;
+    }
+    
+    .header-buttons {
+        flex-direction: row;
     }
 }
