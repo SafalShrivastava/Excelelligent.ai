@@ -1,135 +1,147 @@
 /* General Styles */
-body {
-    font-family: Arial, sans-serif;
+body, html {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
     background-color: #000;
     color: #fff;
+    height: 100%;
 }
 
-/* Header */
-.header {
-    display: flex;
-    justify-content: flex-end; /* Align buttons to the top-right */
-    padding: 20px 40px;
-    position: absolute; /* Position at the top-right corner */
-    top: 0;
-    right: 0;
-    width: 100%;
-    z-index: 10;
-}
-
-.header-buttons {
-    display: flex;
-    gap: 15px;
-    
-}
-
-.button {
-    padding: 10px 20px;
-    border: 1px solid #fff;
-    border-radius: 20px;
-    color: #fff;
-    background: transparent;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    float: right;
-}
-
-.button:hover {
-    background-color: #fff;
-    color: #000;
-}
-
-/* Main Layout */
-.main {
+.main-container {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: 100vh;
+    height: calc(100vh - 50px); /* Full height minus footer */
 }
 
 /* Left Section */
 .left-section {
     width: 50%;
     position: relative;
-    background-image: url('../src/img/robot.png');
-    background-size: cover;
-    background-position: center;
+    background-color: #111;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    
-    
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.left-section .logo img {
-    width: 267.08px;
-    height: 39.56px;
-    max-width: 100%; 
-    display: block; 
-    margin: 0 auto; 
-    
+.logo img {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 /* Right Section */
 .right-section {
-    flex: 1;
+    width: 50%;
     padding: 40px;
+    background-color: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #0A0809;
-
 }
 
-.intro-box {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
+.header {
+    display: flex;
+    justify-content: flex-end;
     margin-bottom: 20px;
 }
 
-.intro-box h1 {
-    font-size: 32px;
-    line-height: 1.5;
+.contact-button {
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-.highlight {
+.contact-button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+}
+
+form input::placeholder {
+    color: #ccc;
+}
+
+.sign-in-button {
+    padding: 12px 20px;
+    background-color: #ff9900;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.sign-in-button:hover {
+    background-color: #cc7a00;
+}
+
+.links {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links a {
     color: #ff9900;
+    text-decoration: none;
 }
 
-.features-list {
-    list-style: none;
-    padding: 0;
-}
-
-.features-list li {
-    margin-bottom: 20px;
-    font-size: 18px;
-    line-height: 1.6;
+.links a:hover {
+    text-decoration: underline;
 }
 
 /* Footer */
 .footer {
     text-align: center;
-    padding: 20px;
-    background-color: #333;
+    font-size: 12px;
     color: #fff;
+    background-color: #111;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .main {
+    .main-container {
         flex-direction: column;
-    }
-
-    .header {
-        position: static; /* Reset header position for small screens */
-        justify-content: center;
     }
 
     .left-section,

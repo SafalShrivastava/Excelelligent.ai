@@ -3,40 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="src/Login.css">
-
-    
+    <title>EXVision Login</title>
+    <link rel="stylesheet" href="src/MasterPage.css">
 </head>
 <body>
-    <div class="container">
+    <main class="main-container">
         <!-- Left Section -->
         <div class="left-section">
-            <!-- <img src="src/img/robot.png" alt="Robot Eye" class="background-image"> -->
             <div class="logo">
-                <a href="Landing.html">
-                <h1><img src="src/img/ExVision_Logo_Transparent.png" alt="Robot Eye" class="background-image"></h1>
-                </a>
+                <img src="src/img/ExVision_Logo_Transparent.png" alt="ExVision Logo">
+            </div>
+            <div class="image-container">
+                <img src="src/img/robot.png" alt="Robot Eye">
             </div>
         </div>
 
         <!-- Right Section -->
-        <section class="right-section">
-            <div class="intro-box">
-                <h1>
-                    Introducing <span class="highlight">EXVision</span> powered by
-                    Excelligent AI, your one-stop solution for on-demand surveillance in seconds!
-                </h1>
+        <div class="right-section">
+            <header class="header">
+                <button class="contact-button">CONTACT NOW →</button>
+            </header>
+            <div class="form-container">
+                <form>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email address">
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+
+                    <button type="submit" class="sign-in-button">Sign In →</button>
+                </form>
+                <div class="links">
+                    <a href="#">Forgot Password?</a>
+                    <p>Don’t have an account? <a href="#">Sign Up</a></p>
+                </div>
             </div>
-            <ul class="features-list">
-                <li><span class="highlight">Speed:</span> Pinpoint critical moments and identify incidents like theft or safety violations in seconds with smarter, faster video analysis.</li>
-                <li><span class="highlight">Ease:</span> Explore video content effortlessly using simple text descriptions, saving time and boosting efficiency.</li>
-                <li><span class="highlight">Built on Responsible AI:</span> Ensuring your privacy with no data stored or shared.</li>
-            </ul>
-        </section>
-    </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
     <footer class="footer">
-        <p>Excelligent.ai © 2024. All rights reserved.</p>
+        Excelligent.ai © 2024. All rights reserved.
     </footer>
 </body>
 </html>

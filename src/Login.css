@@ -20,7 +20,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 .header{
-    float: right;
     display: flex; 
     justify-content: flex-end; /* Align button to the right */ 
     align-items: right; 
@@ -88,7 +87,7 @@ body {
     margin-bottom: 20px;
 }
 
-.contact-btn {
+/* .contact-btn {
     background-color: #333;
     color: #fff;
     border: none;
@@ -101,7 +100,7 @@ body {
 
 .contact-btn:hover {
     background-color: #444;
-}
+} */
 
 /* Form styles */
 .login-form label {
@@ -163,6 +162,17 @@ body {
 
 .links a:hover {
     text-decoration: underline;
+}
+.highlight {
+    color: #ff9900;
+}
+.footer-background {
+    position: fixed; /* Fix the footer at the bottom */
+    bottom: 0;
+    width: 100%; /* Ensure it spans the whole page width */
+    color: white; /* White text color for contrast */
+    text-align: center;
+    padding: 10px;
 }
 
 /* Responsive Styles */

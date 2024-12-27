@@ -143,16 +143,69 @@ body {
 .features-list li:nth-child(3) {
     animation-delay: 2.5s; /* Delay the third item */
 }
-
-/* Footer */
-.footer {
+/* Footer Styles */
+.footer-background {
+    position: fixed; /* Fix the footer at the bottom */
+    bottom: 0;
+    width: 100%; /* Ensure it spans the whole page width */
+    color: white; /* White text color for contrast */
     text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
+    padding: 10px;
+}
+/* Responsive Footer Adjustments */
+@media (max-width: 768px) {
+    footer {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
 }
 
-/* Responsive Styles */
+@media (max-width: 480px) {
+    footer {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 1024px) {
+    body {
+        font-size: 18px;
+    }
+
+    .header {
+        padding: 20px;
+        justify-content: center;
+    }
+
+    .logo img {
+        width: 200px; /* Reduce logo size */
+    }
+
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+        height: auto; /* Allow sections to adjust dynamically */
+    }
+
+    .intro-box h1 {
+        font-size: 28px;
+    }
+
+    .features-list li {
+        font-size: 18px;
+    }
+
+    .button {
+        padding: 12px 18px;
+        font-size: 16px;
+    }
+}
+
+/* Responsive Styles for Small Screens */
 @media (max-width: 768px) {
     body {
         font-size: 16px;
@@ -162,7 +215,6 @@ body {
         flex-direction: column;
         align-items: center;
         padding: 10px 20px;
-        position: static; /* Remove absolute positioning */
     }
 
     .header-buttons {
@@ -170,26 +222,19 @@ body {
     }
 
     .logo {
-        position: static; /* Remove absolute positioning */
         margin: 20px 0;
         text-align: center;
     }
 
     .main {
         flex-direction: column;
-        height: auto; /* Allow height to adjust dynamically */
+        height: auto;
     }
 
-    .left-section {
-        width: 100%;
-        height: auto; /* Let content define the height */
-        padding: 20px;
-        background-size: cover;
-    }
-
-    .right-section {
+    .left-section, .right-section {
         width: 100%;
         padding: 20px;
+        height: auto;
     }
 
     .intro-box h1 {
@@ -208,11 +253,24 @@ body {
     }
 }
 
-/* For very small screens */
+/* For Very Small Screens (Mobile) */
 @media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
     .header-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 8px;
+    }
+
+    .logo img {
+        width: 150px;
+    }
+
+    .intro-box {
+        padding: 15px;
     }
 
     .intro-box h1 {
@@ -230,5 +288,91 @@ body {
 
     .footer {
         font-size: 12px;
+        padding: 10px;
+    }
+}
+
+/* Ultra-Small Screens (Extra Responsive) */
+@media (max-width: 320px) {
+    body {
+        font-size: 12px;
+    }
+
+    .header {
+        padding: 5px 10px;
+    }
+
+    .header-buttons {
+        gap: 5px;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+    .main {
+        padding: 10px;
+    }
+
+    .intro-box {
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .intro-box h1 {
+        font-size: 16px;
+    }
+
+    .features-list li {
+        font-size: 12px;
+    }
+
+    .button {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+
+    .footer {
+        font-size: 10px;
+        padding: 8px;
+    }
+}
+
+/* Landscape Orientation for Tablets and Mobile Devices */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        font-size: 15px;
+    }
+
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px;
+    }
+
+    .logo img {
+        width: 180px;
+    }
+
+    .main {
+        flex-direction: row;
+    }
+
+    .left-section, .right-section {
+        width: 50%;
+        height: 100%;
+    }
+
+    .intro-box h1 {
+        font-size: 22px;
+    }
+
+    .features-list li {
+        font-size: 14px;
+    }
+
+    .button {
+        font-size: 12px;
+        padding: 6px 12px;
     }
 }

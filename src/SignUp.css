@@ -1,13 +1,16 @@
 /* General body styles */
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0  ;
     background-color: #000;
     color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* min-height: 100vh; */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+
 }
 
 /* Container */
@@ -23,23 +26,49 @@ body {
 .left-section {
     width: 50%;
     position: relative;
-    background-image: url('../src/img/robot.png');
+    background-image: url('../src/img/robot.png'); 
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 20px;
+    
 }
 
 .left-section .logo img {
-    width: 267px;
-    height: 40px;
-    max-width: 100%; /* Ensure it doesn't exceed the container */
-    display: block; /* Remove extra space below the image */
-    margin: 0 auto; /* Center the image horizontally */
+    width: 267.08px;
+    height: 39.56px;
+    max-width: 100%; 
+    display: block; 
+    margin: 0 auto; 
+    align-items: right
+    
+}
+.header-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
 }
 
+.button {
+    height: 51px;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #fff;
+    color: #000;
+}
 /* Right Section */
 .right-section {
     width: 50%;
@@ -55,7 +84,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Contact Button */
 .contact-btn {
     background-color: #333;
     color: #fff;
@@ -64,7 +92,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.9rem;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;  
 }
 
 .contact-btn:hover {
@@ -85,14 +113,14 @@ body {
     border: 1px solid #333;
     border-radius: 5px;
     background-color: #fff;
-    color: #000;
+    color: #fff;
 }
 
 .login-form input::placeholder {
-    color: #555; /* Lighter text for placeholders */
+    color: #aaa;
 }
 
-/* Sign Up Button */
+/* Sign In Button */
 .sign-in-btn {
     width: 100%;
     padding: 10px;
@@ -132,14 +160,19 @@ body {
 .links a:hover {
     text-decoration: underline;
 }
-
-/* Footer styles */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
+.highlight {
+    color: #ff9900;
 }
+/* Footer */
+.footer-background {
+    position: fixed; /* Fix the footer at the bottom */
+    bottom: 0;
+    width: 100%; /* Ensure it spans the whole page width */
+    color: white; /* White text color for contrast */
+    text-align: center;
+    padding: 10px;
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
@@ -164,9 +197,8 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .left-section .logo img {
-        width: 200px; /* Adjust for smaller screens */
-        height: auto;
+    .left-section .logo h1 {
+        font-size: 1.5rem;
     }
 
     .contact-btn {

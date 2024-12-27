@@ -1,4 +1,4 @@
-/* styles.css */
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,13 +7,36 @@ body {
     color: #333;
 }
 
+/* Header */
 .header {
     display: flex;
+    flex-wrap: wrap; /* Allow items to wrap for smaller screens */
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
     padding: 1rem 2rem;
     border-bottom: 1px solid #ddd;
+}
+
+.background-image {
+    position: relative;
+    left: 100px;
+}
+
+header .user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adjusted for more space between items */
+}
+
+header .user-info span {
+    margin-right: 10px;
+    color: #333;
+}
+
+header .user-info .icons {
+    display: flex;
+    gap: 10px; /* Adjusted for more space between icons */
 }
 
 .logo {
@@ -24,7 +47,10 @@ body {
 
 .top-actions {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap; /* Allow buttons to wrap for smaller screens */
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .button {
@@ -34,6 +60,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     border: none;
+    text-align: center;
 }
 
 .button.primary {
@@ -50,10 +77,10 @@ body {
     opacity: 0.9;
 }
 
+/* Main Content */
 .main-content {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex-direction: column; /* Stack items vertically on small screens */
     padding: 2rem;
     max-width: 800px;
     margin: auto;
@@ -136,11 +163,47 @@ label {
     border-bottom: none;
 }
 
+/* Footer */
 .footer {
-    text-align: center;
-    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     background-color: #333;
-    color: #fff;
-    font-size: 0.9rem;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .top-actions {
+        justify-content: flex-start;
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 1rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .button {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+}
