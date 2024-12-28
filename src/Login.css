@@ -176,11 +176,35 @@ body {
 }
 
 /* Responsive Styles */
+
+/* Responsive Styles */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
     }
-
+    .left-section .logo img {
+        width: 267.08px;
+        height: 39.56px;
+        max-width: 100%; 
+        display: block; 
+        margin: 100px; 
+        align-items: right
+        
+    }
+    .footer-background {
+        text-align: left;
+    }
+    .button {
+        
+        border-radius: 30px;
+        color: #fff;
+        background: transparent;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        align-items: center;
+    }
     .left-section,
     .right-section {
         width: 100%;
@@ -193,7 +217,7 @@ body {
     }
 
     .right-section {
-        padding: 20px;
+        padding: 10px;
     }
 }
 
@@ -201,7 +225,24 @@ body {
     .left-section .logo h1 {
         font-size: 1.5rem;
     }
-
+    .left-section .logo img {
+        width: 267.08px;
+        height: 39.56px;
+        max-width: 100%; 
+        display: block; 
+        margin: 100px; 
+        align-items: right;}
+        .button {
+        
+            border-radius: 30px;
+            color: #fff;
+            background: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            align-items: center;
+        }
     .contact-btn {
         font-size: 0.8rem;
         padding: 8px 16px;

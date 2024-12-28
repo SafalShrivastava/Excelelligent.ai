@@ -164,16 +164,16 @@ label {
 }
 
 /* Footer */
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-}
+.footer-background {
+    position: fixed; /* Makes the footer stick to the viewport */
+    bottom: 0; /* Aligns the footer to the bottom of the viewport */
+    width: 100%; /* Ensures the footer spans the full width */
+    background-color: #333; /* Background color for the footer */
+    color: white; /* Text color for contrast */
+    text-align: center; /* Center-align the text */
+    padding: 10px; /* Adds padding for spacing */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for visual appeal */
+  }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
@@ -183,9 +183,12 @@ label {
     }
 
     .top-actions {
-        justify-content: flex-start;
         width: 100%;
         margin-top: 1rem;
+    }
+    .background-image {
+        position: relative;
+        left: 0px;
     }
 }
 
@@ -200,6 +203,7 @@ label {
 
     .title {
         font-size: 1.5rem;
+        top: 20px;
     }
 
     .button {
