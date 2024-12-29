@@ -113,11 +113,11 @@ body {
     border: 1px solid #333;
     border-radius: 5px;
     background-color: #fff;
-    color: #fff;
+    color: #000;
 }
 
 .login-form input::placeholder {
-    color: #aaa;
+    color: #000;
 }
 
 /* Sign In Button */
