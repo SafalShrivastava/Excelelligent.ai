@@ -5,16 +5,14 @@ body {
   padding: 0;
   background-color: #000;
   color: #fff;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  display: flex;
+
 }
 
 /* Header */
 .header {
-  display: flex;
-  justify-content: flex-end;
   padding: 40px 140px;
   position: absolute;
-  top: 0;
   right: 0;
   width: 100%;
   z-index: 10;
