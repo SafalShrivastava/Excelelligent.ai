@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Outfit', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #000;
@@ -12,7 +12,7 @@ body {
 .header {
   display: flex;
   justify-content: flex-end;
-  padding: 35px 40px;
+  padding: 40px 140px;
   position: absolute;
   top: 0;
   right: 0;
@@ -21,8 +21,11 @@ body {
 }
 
 .header-buttons {
+  position: absolute;
+  top: 20px;
+  right: 140px;
   display: flex;
-  gap: 15px;
+  gap: 10px;  
 }
 
 .button {
@@ -61,33 +64,26 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  flex-direction: column;
-  padding-top: 20px;
 }
 
-.logo {
-  position: absolute;
-  top: 20px;
-  right: 250px;
-  z-index: 100;
-  text-align: center;
-}
-
-.logo img {
-  height: auto;
-  width: 276.08px;
-  max-width: 100%;
+.left-section .logo img {
+  width: 267.08px;
+  height: 39.56px;
+  max-width: 100%; 
+  display: block; 
+  margin: 0 auto; 
 }
 
 /* Right Section */
 .right-section {
-  flex: 1;
+  width: 50%;
+  background-color: #0A0809;
   padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #0a0809;
 }
+
 /* Fade-in animation */
 @keyframes fadeIn {
   0% {
@@ -99,29 +95,42 @@ body {
     transform: translateY(0);
   }
 }
+
 .intro-box {
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 20px;
+  padding: 10px 20px;
   border-radius: 10px;
-  margin-bottom: 20px;
-  opacity: 0;
+  margin-bottom: 10px;
   animation: fadeIn 1s ease-out forwards; /* Add animation */
   animation-delay: 0.5s; /* The intro box appears first with a slight delay */
+  margin-right: 100px; /* Add left margin */
 }
 
 .intro-box h1 {
-  font-size: 32px;
+  font-size: 25px;
   line-height: 1.5;
-  text-align: left;
+  text-align: center;
+  font-weight: normal;
+}
+
+img {
+  height: 20px; /* Adjust this value as needed */
 }
 
 .highlight {
   color: #ff9900;
+  font-weight: bold;
 }
 
 .features-list {
   list-style: none;
   padding: 0;
+  margin-right: 100px; /* Add left margin */
+}
+
+.features-list .highlight img {
+  height: 15px; /* Set a fixed height for the arrow image */
+  margin-right: 5px; /* Add spacing between the image and text */
 }
 
 .features-list li {
@@ -131,6 +140,7 @@ body {
   opacity: 0;
   animation: fadeIn 1s ease-out forwards; /* Add animation */
 }
+
 /* Add delay for each item in the list */
 .features-list li:nth-child(1) {
   animation-delay: 1.5s; /* Delay the first item to appear after intro box */
@@ -143,6 +153,7 @@ body {
 .features-list li:nth-child(3) {
   animation-delay: 2.5s; /* Delay the third item */
 }
+
 /* Footer Styles */
 .footer-background {
   position: fixed; /* Fix the footer at the bottom */
@@ -152,27 +163,33 @@ body {
   text-align: center;
   padding: 10px;
 }
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .main {
     flex-direction: column;
   }
+
   .left-section,
   .right-section {
     width: 100%;
     height: auto;
   }
+
   .left-section {
     min-height: 300px;
     padding: 20px;
   }
+
   .right-section {
     padding: 20px;
   }
+
   .header {
     padding: 20px;
     flex-direction: column;
   }
+
   .header-buttons {
     flex-direction: row;
     width: 100%;
@@ -187,76 +204,29 @@ body {
     max-width: 100%;
     display: block;
     margin: 100px;
-    align-items: right;
   }
+
   .intro-box {
     padding: 20px;
   }
+
   .intro-box h1 {
     font-size: 24px;
   }
+
   .features-list li {
     font-size: 15px;
     margin-bottom: 15px;
   }
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-  .left-section,
-  .right-section {
-    width: 100%;
-    height: auto;
-  }
-  .left-section {
-    min-height: 300px;
-    padding: 20px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-  }
-  .right-section {
-    padding: 20px;
-  }
-  .header {
-    padding: 20px;
-    flex-direction: column;
-  }
-  .header-buttons {
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  .logo {
-    align-self: center;
-    margin-left: 10px;
-    margin-top: 20px; /* Move the logo down */
-  }
-  .logo img {
-    width: 200px;
-  }
-  .intro-box {
-    padding: 20px;
-  }
-  .intro-box h1 {
-    font-size: 24px;
-  }
-  .features-list li {
-    font-size: 15px;
-    margin-bottom: 15px;
-  }
-}
 @media (max-width: 576px) {
   .header {
     flex-direction: column;
     align-items: center;
     padding: 15px;
   }
+
   .header-buttons {
     flex-direction: row;
     width: 100%;
@@ -264,34 +234,42 @@ body {
     gap: 10px;
     margin-top: 10px;
   }
+
   .left-section {
     height: 45vh;
     min-height: 350px;
     background-size: 100%; /* Cover half horizontally and full vertically */
   }
+
   .logo {
     align-self: center;
     margin-left: 10px;
     margin-top: 20px; /* Move the logo down */
   }
+
   .logo img {
     width: 180px;
   }
+
   .right-section {
     padding: 40px 20px;
     align-items: center;
   }
+
   .intro-box {
     padding: 25px;
     margin-top: 20px; /* Add margin-top to avoid overlapping */
   }
+
   .intro-box h1 {
     font-size: 22px;
   }
+
   .features-list li {
     font-size: 14px;
     margin-bottom: 12px;
   }
+
   .button {
     border-radius: 30px;
     color: #fff;
@@ -302,15 +280,14 @@ body {
     transition: all 0.3s ease;
     align-items: center;
   }
+
   .contact-btn {
     font-size: 0.8rem;
     padding: 8px 16px;
   }
+
   .sign-in-btn {
     font-size: 0.9rem;
     padding: 10px;
-  }
-  .links a {
-    font-size: 0.8rem;
   }
 }
