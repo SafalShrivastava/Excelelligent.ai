@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Now</title>
+    <link rel="stylesheet" href="src/contact_now.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="logo">
+                <a href="Landing.html">
+                    <img src="src/img/ExVision_Logo_Transparent.png" alt="Robot Eye" class="background-image">
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="header-buttons">
+                <a href="Login.html"><button class="button contact-now-btn">Sign In →</button></a>
+            </div>
+            <form class="contact-form">
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+
+                <label for="email-address">Email Address</label>
+                <input type="email" id="email-address" name="email-address" placeholder="Enter your email address" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Type your message here..." rows="5" required></textarea>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">
+                    Submit <span class="arrow">→</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <footer class="footer-background">
+        <ul class="features-list">
+            <li><span class="highlight">Excelligent.ai</span> © 2024. All rights reserved.</li>
+        </ul>
+    </footer>
+</body>
+</html>

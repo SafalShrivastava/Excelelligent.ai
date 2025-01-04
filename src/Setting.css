@@ -1,0 +1,118 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #fff;
+    color: #565454;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  
+  header h1 img {
+    height: 50px;
+    margin-left: 120px;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    margin-right: 110px;
+    gap: 30px;
+  }
+  
+  .user-info span {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .icons img {
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  .settings-container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: black;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  h2 {
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #2f2e2e;
+    border-radius: 5px;
+  }
+  
+  select,
+  input[type="checkbox"] {
+    margin-left: 10px;
+  }
+  
+  select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  footer {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: #333;
+    border-radius: 0px; /* Remove border-radius from footer */
+    border: 0;
+
+  }
+  
+  .footer-background {
+    padding: 10px;
+    text-align: center;
+    color: white;
+    border: 0;
+
+  }
+  
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .highlight {
+    color: #d76900;
+  }
+  

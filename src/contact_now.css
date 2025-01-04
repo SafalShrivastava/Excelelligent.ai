@@ -1,0 +1,194 @@
+/* General body styles */
+body {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000; 
+    color: #fff;
+    overflow-x: hidden;
+    display: flex;
+    flex-wrap: wrap; /* Ensures items wrap to the next line */
+    font-size: 1rem;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    overflow: hidden;
+
+}
+
+/* Left Section */
+.left-section {
+    width: 50%;
+    position: relative;
+    background-image: url('../src/img/robot.png'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.left-section .logo {
+    margin-top: 20px; /* Adjust this value to move the logo further down */
+}
+
+.left-section .logo img {
+    width: 267px;
+    height: auto;
+    max-width: 100%;
+}
+
+/* Right Section */
+.right-section {
+    width: 50%;
+    background-color: #0A0809;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header-buttons {
+    position: absolute;
+    top: 20px;
+    right: 140px;
+    display: flex;
+}
+
+.contact-now-btn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.contact-now-btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Form styles */
+.contact-form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form label {
+    font-size: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: 14px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #555;
+}
+
+.contact-form textarea {
+    resize: none;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 103.5%;
+    padding: 10px;
+    background-color: #f57c00;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #d76900;
+}
+
+.submit-btn .arrow {
+    font-weight: bold;
+}
+
+/* Footer */
+.footer-background {
+    position: absolute; /* Keeps the footer at the bottom */
+    bottom: 0; /* Aligns the footer with the bottom edge */
+    left: 0;
+    width: 100%; /* Ensures the footer spans the entire width */
+    background-color: transparent; /* Makes the footer background fully transparent */
+    color: #fff;
+    text-align: center; /* Centers the footer content horizontally */
+    padding: 10px; /* Adds some spacing for better readability */
+    font-size: 14px;
+    z-index: 10; /* Ensures it appears above other elements */
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.features-list .highlight {
+    color: #ff9900;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-section,
+    .right-section {
+        width: 100%;
+    }
+
+    .footer-background {
+        width: 100%; /* Ensure the footer spans full width on smaller screens */
+    }
+
+    .contact-form {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 12px;
+    }
+
+    .submit-btn {
+        font-size: 14px;
+    }
+}

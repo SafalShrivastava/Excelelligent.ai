@@ -13,7 +13,6 @@ header {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
   position: relative; /* For positioning child elements */
-  margin-left: 10px;
 }
 
 .background-image {
