@@ -168,19 +168,29 @@ video {
     margin-bottom: 20px;
 }
 
-.thumbnails {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap; /* Enable wrapping for responsive layout */
+#thumbnails-container {
+    display:flex;flex-wrap: wrap; /* Align items horizontally */
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    white-space: wrap; /* Prevent wrapping to the next line */
+    gap: 10px; /* Space between thumbnails */
+    padding: 10px;
+    border: 1px solid #ddd; /* Optional border for container */
+    justify-content: space-between;
 }
 
-#thumbnails-container img  {
-    width: 80px;
-    height: 60px;
-    border-radius: 5px;
+.thumbnail-wrapper {
+    display: inline-block; /* Ensure each image stays in a single line */
+    text-align: center;
+    max-width: 150px; /* Adjust based on your thumbnail size */
+}
+
+.thumbnail-wrapper img {
+    max-width: 100%; /* Ensure images fit within the wrapper */
+    height: auto;
     cursor: pointer;
 }
+
+
 
 .save-analysis {
     background-color: #ff9900;

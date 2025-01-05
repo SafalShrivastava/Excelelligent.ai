@@ -1,71 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upload New Video</title>
-    <link rel="stylesheet" href="src/upload_new_video.css">
-</head>
-<body>
+    <link rel="stylesheet" href="src/upload_new_video.css" />
+  </head>
+  <body>
     <header>
-        <a href="Landing.html">
-            <h1>
-                <img src="src/img/EXVision_Logo_Black_Transparent.png" alt="Robot Eye">
-            </h1>
-        </a>
-        <div class="user-info">
-            <span>pranoliver@gmail.com</span>
-            <div class="icons">
-                <a href="Setting.html"><img src="src/img/settings.png" alt="Settings" class="icon"></a>
-                <a href="Landing.html"><img src="src/img/logout.png" alt="Logout" class="icon"></a>
-            </div>
+      <a href="Landing.html">
+        <h1>
+          <img
+            src="src/img/EXVision_Logo_Black_Transparent.png"
+            alt="Robot Eye"
+          />
+        </h1>
+      </a>
+      <div class="user-info">
+        <span>pranoliver@gmail.com</span>
+        <div class="icons">
+          <a href="Setting.html"
+            ><img src="src/img/settings.png" alt="Settings" class="icon"
+          /></a>
+          <a href="Landing.html"
+            ><img src="src/img/logout.png" alt="Logout" class="icon"
+          /></a>
         </div>
+      </div>
     </header>
 
     <main>
-        <section class="details">
-            <h2>Details</h2>
-            <p>Fill the below details to upload the video</p>
-            <form id="video-upload-form">
-                <div class="file-upload">
-                    <label for="file-input">Choose file</label>
-                    <input type="file" id="file-input" name="video" accept="video/*" required>
-                    <p>Upload your video file or drop here</p>
-                </div>
-                <label for="prompt-text">Prompt text</label>
-                <textarea id="prompt-text" name="prompt" placeholder="Prompt" required></textarea>
-                <label for="interval">Interval (Seconds)</label>
-                <input type="number" id="interval" name="interval" value="5" required>
-                <label for="accuracy-threshold">Accuracy threshold</label>
-                <input type="range" id="accuracy-threshold" name="threshold" min="0" max="100" step="1" value="10">
-                <span id="threshold-value">10</span>
-                <div class="actions">
-                    <button type="button" class="cancel">CANCEL</button>
-                    <button type="submit" class="submit">SUBMIT</button>
-                </div>
-            </form>
-        </section>
-        <section class="preview">
-            <h2>Preview video</h2>
-            <div class="video-container">
-                <video id="video-preview" controls style="display: none;"></video>
-                <div id="thumbnails-container">
-                    <img src="https://via.placeholder.com/100" alt="Thumbnail 1">
-                    <img src="https://via.placeholder.com/100" alt="Thumbnail 2">
-                    <img src="https://via.placeholder.com/100" alt="Thumbnail 3">
-                    <img src="https://via.placeholder.com/100" alt="Thumbnail 4">
-                </div>
-                <button class="save-analysis" style="display: none;">SAVE ANALYSIS</button>
-            </div>
-        </section>
+      <section class="details">
+        <h2>Details</h2>
+        <p>Fill the below details to upload the video</p>
+        <form id="video-upload-form">
+          <div class="file-upload">
+            <label for="file-input">Choose file</label>
+            <input
+              type="file"
+              id="file-input"
+              name="video"
+              accept="video/*"
+              required
+            />
+            <p>Upload your video file or drop here</p>
+          </div>
+          <label for="prompt-text">Prompt text</label>
+          <textarea
+            id="prompt-text"
+            name="prompt"
+            placeholder="Prompt"
+            required
+          ></textarea>
+          <label for="interval">Interval (Seconds)</label>
+          <input
+            type="number"
+            id="interval"
+            name="interval"
+            value="5"
+            required
+          />
+          <label for="accuracy-threshold">Accuracy threshold</label>
+          <input
+            type="range"
+            id="accuracy-threshold"
+            name="threshold"
+            min="0.0"
+            max="1.0"
+            step="0.1"
+            value="0.0"
+          />
+          <span id="threshold-value">0.0</span>
+          <div class="actions">
+            <button type="button" class="cancel">CANCEL</button>
+            <button type="submit" class="submit">SUBMIT</button>
+          </div>
+        </form>
+      </section>
+      <section class="preview">
+        <h2>Preview video</h2>
+        <div class="video-container">
+          <video id="video-preview" controls style="display: none"></video>
+          <div id="thumbnails-container">
+            <img src="https://via.placeholder.com/100" alt="Thumbnail 1" />
+            <img src="https://via.placeholder.com/100" alt="Thumbnail 2" />
+            <img src="https://via.placeholder.com/100" alt="Thumbnail 3" />
+            <img src="https://via.placeholder.com/100" alt="Thumbnail 4" />
+          </div>
+          <button class="save-analysis" style="display: none">
+            SAVE ANALYSIS
+          </button>
+        </div>
+      </section>
     </main>
 
     <footer class="footer-background">
-        <ul class="features-list">
-            <li><span class="highlight">Excelligent.ai</span> © 2024. All rights reserved.</li>
-        </ul>
+      <ul class="features-list">
+        <li>
+          <span class="highlight">Excelligent.ai</span> © 2024. All rights
+          reserved.
+        </li>
+      </ul>
     </footer>
 
     <script src="src/JS/main.js"></script>
-</body>
+  </body>
 </html>

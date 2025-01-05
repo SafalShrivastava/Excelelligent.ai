@@ -54,29 +54,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Close overlay when clicking outside the image
-    zoomOverlay.addEventListener("click", (event) => {
-        if (event.target === zoomOverlay) {
-            zoomOverlay.style.display = "none";
-        }
-    });
-
-    // Handle form submission
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
-
+    
         // Validate file input
         if (!fileInput.files.length) {
             alert("Please select a video file to upload.");
             return;
         }
-
+    
         // Create FormData object
         const formData = new FormData();
         formData.append("video", fileInput.files[0]);
         formData.append("prompt", promptInput.value);
         formData.append("interval", intervalInput.value);
         formData.append("threshold", thresholdInput.value);
-
+    
         try {
             // Send POST request to the backend API
             const response = await fetch(
@@ -86,32 +79,51 @@ document.addEventListener("DOMContentLoaded", () => {
                     body: formData,
                 }
             );
-
+    
             if (!response.ok) {
                 throw new Error(`Server responded with status ${response.status}`);
             }
-
+    
             const data = await response.json();
             console.log("Response data:", data);
-
+    
             // Clear previous thumbnails
             thumbnailsContainer.innerHTML = "";
-
-            // Display thumbnails from the response
+    
+            // Display thumbnails with timestamp and accuracy
             data.matches.forEach((match) => {
+                // Create a container for the thumbnail and caption
+                const thumbnailWrapper = document.createElement("div");
+                thumbnailWrapper.className = "thumbnail-wrapper";
+    
+                // Create the thumbnail image
                 const img = document.createElement("img");
                 img.src = `data:image/png;base64,${match.image_base64}`;
                 img.alt = `Thumbnail at ${match.time} seconds with ${match.accuracy} accuracy`;
                 img.title = `Time: ${match.time}s, Accuracy: ${match.accuracy}`;
-                thumbnailsContainer.appendChild(img);
+    
+                // Create a caption for timestamp and accuracy
+                const caption = document.createElement("div");
+                caption.textContent = `Time: ${match.time}s, Accuracy: ${match.accuracy}`;
+    
+                // Append image and caption to the wrapper
+                thumbnailWrapper.appendChild(img);
+                thumbnailWrapper.appendChild(caption);
+    
+                // Append the wrapper to the thumbnails container
+                thumbnailsContainer.appendChild(thumbnailWrapper);
             });
-
+    
             // Optionally show the save analysis button
             saveAnalysisButton.style.display = "block";
+            alert("Video uploaded and frames generated successfully!");
 
+    
         } catch (error) {
             console.error("Error uploading video:", error);
             alert("Failed to process the video. Please try again.");
         }
     });
+    
+    
 });
