@@ -28,22 +28,21 @@
                     <a href="contact_now.html"><button class="button contact-now">CONTACT NOW →</button></a>
                 </div>
             </header>
-            <form class="login-form">
+            <form id="login-form" class="login-form">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email address" required>
 
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-                <a href="Your_videos.html" class="sign-in-btn">
-                    Sign In <span class="arrow">→</span>
-                </a>
+                <a href="Your_videos.html"> <button class="sign-in-btn"> Sign In <span class="arrow">→</span></button></a>            
 
                 <div class="links">
                     <a href="#" class="forgot-password">Forgot Password?</a>
                     <p>Don’t have an account? <a href="SignUp.html" class="sign-up">Sign Up</a></p>
                 </div>
             </form>
+            <div id="login-response"></div>
         </div>
     </div>
     <footer class="footer-background">
@@ -51,5 +50,44 @@
             <li><span class="highlight">Excelligent.ai</span> © 2024. All rights reserved.</li>
         </ul>
     </footer>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Handle form submission
+            $('#login-form').submit(function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Collect form data
+                const formData = {
+                    email: $('#email').val(),
+                    password: $('#password').val()
+                };
+
+                // Make AJAX request
+                $.ajax({
+                    url: 'http://localhost:3000/login', // Server endpoint for login
+                    type: 'POST',
+                    contentType: 'application/json', // Set content type as JSON
+                    data: JSON.stringify(formData), // Stringify the form data
+                    success: function(response) {
+                        // Display success message and redirect if needed
+                        $('#login-response').html('<p class="success">' + response + '</p>');
+                        setTimeout(() => {
+                            window.location.href = "Your_videos.html"; // Redirect after success
+                        }, 2000);
+                    },
+                    error: function(xhr) {
+                        // Display error message
+                        $('#login-response').html('<p class="error">Error: ' + xhr.responseText + '</p>');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
