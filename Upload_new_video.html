@@ -28,9 +28,10 @@
         </div>
       </div>
     </header>
-
+    
     <main>
       <section class="details">
+        <a href="Your_videos.html"><img src="src/img/my_upload_videos.png" alt="my upload videos"/></a>
         <h2>Details</h2>
         <p>Fill the below details to upload the video</p>
         <form id="video-upload-form">
@@ -45,6 +46,17 @@
             />
             <p>Upload your video file or drop here</p>
           </div>
+           <label for="title">Title <span>*</span></label>
+                <input type="text" id="title" name="prompt" placeholder="Enter video title" required>
+                <label for="category">Pre-defined category</label>
+                <select id="category">
+                    <option>Select pre-defined prompt</option>
+                </select>
+                <label for="prompts">Pre-defined prompts</label>
+                <select id="prompts">
+                    <option>Select pre-defined prompt</option>
+                </select>
+
           <label for="prompt-text">Prompt text</label>
           <textarea
             id="prompt-text"

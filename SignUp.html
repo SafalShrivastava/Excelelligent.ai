@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="src/SignUp.css">
+    <link rel="stylesheet" href="src/SignUp.css"> <!-- Adjust path if needed -->
 </head>
 <body>
     <div class="container">
@@ -12,7 +12,7 @@
         <div class="left-section">
             <div class="logo">
                 <a href="Landing.html">
-                <h1><img src="src/img/ExVision_Logo_Transparent.png" alt="Robot Eye" class="background-image"></h1>
+                    <h1><img src="src/img/ExVision_Logo_Transparent.png" alt="Robot Eye" class="background-image"></h1>
                 </a>
             </div>
         </div>
@@ -22,33 +22,71 @@
             <div class="header-buttons">
                 <a href="contact_now.html"><button class="button contact-now">CONTACT NOW →</button></a>
             </div>
-            <form class="login-form">
+            <form class="login-form" id="signup-form">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email address" required>
 
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-                <label for="password">Retype Password</label>
-                <input type="password" id="password" name="password" placeholder="Retype Password" required>
+                <label for="confirm-password">Retype Password</label>
+                <input type="password" id="confirm-password" name="confirm_password" placeholder="Retype Password" required>
 
-                <!-- Redirect Sign Up Button -->
-                <a href="Login.html" class="sign-in-btn">
+                <!-- Sign Up Button -->
+                <button type="submit" class="sign-in-btn">
                     Sign Up <span class="arrow">→</span>
-                </a>
+                </button>
 
                 <div class="links">
                     <a href="#" class="forgot-password">Forgot Password?</a>
                     <p>Don’t have an account? <a href="Login.html" class="sign-in">Sign In</a></p>
                 </div>
-                
             </form>
+
+            <!-- This will display the response message -->
+            <div id="signup-response"></div>
         </div>
     </div>
+    
     <footer class="footer-background">
         <ul class="features-list">
             <li><span class="highlight">Excelligent.ai</span> © 2024. All rights reserved.</li>
         </ul>
     </footer>
+
+    <!-- Include jQuery for AJAX -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // When the document is ready
+        $(document).ready(function() {
+            // Handle the form submission
+            $('#signup-form').submit(function(event) {
+                event.preventDefault();  // Prevent the default form submission
+
+                // Get form data
+                const formData = {
+                    email: $('#email').val(),
+                    password: $('#password').val(),
+                    confirm_password: $('#confirm-password').val()
+                };
+
+                // Make an AJAX request to the server
+                $.ajax({
+                    url: 'http://localhost:3000/signup',  // Your server URL for signup
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        // Display success message
+                        $('#signup-response').html('<p>' + response + '</p>');
+                    },
+                    error: function(xhr, status, error) {
+                        // Display error message
+                        $('#signup-response').html('<p>Error: ' + xhr.responseText + '</p>');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -10,7 +10,6 @@ body {
     /* align-items: center; */
     /* min-height: 100vh; */
     overflow-x: hidden; /* Prevent horizontal scroll */
-
 }
 
 /* Container */
@@ -32,7 +31,6 @@ body {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    
 }
 
 .left-section .logo img {
@@ -41,9 +39,9 @@ body {
     max-width: 100%; 
     display: block; 
     margin: 0 auto; 
-    align-items: right
-    
+    align-items: right;
 }
+
 .header-buttons {
     position: absolute;
     top: 20px;
@@ -69,6 +67,7 @@ body {
     background-color: #fff;
     color: #000;
 }
+
 /* Right Section */
 .right-section {
     width: 50%;
@@ -107,7 +106,7 @@ body {
 }
 
 .login-form input {
-    width: 600px;
+    width: 90%; /* Ensure full-width input for better UX */
     height: 30px;
     padding: 10px;
     margin-bottom: 20px;
@@ -123,8 +122,8 @@ body {
 
 /* Sign In Button */
 .sign-in-btn {
-    width: 600px;
-    height: 30px;
+    width: 93%; /* Full width for better usability */
+    height: 50px;
     padding: 10px;
     background-color: #f57c00;
     border: none;
@@ -163,10 +162,11 @@ body {
 .links a:hover {
     text-decoration: underline;
 }
+
 .highlight {
     color: #ff9900;
-
 }
+
 /* Footer */
 .footer-background {
     position: fixed; /* Fix the footer at the bottom */
@@ -176,7 +176,6 @@ body {
     text-align: center;
     padding: 10px;
 }
-
 
 /* Responsive Styles */
 @media (max-width: 768px) {
@@ -189,14 +188,13 @@ body {
         max-width: 100%; 
         display: block; 
         margin: 100px; 
-        align-items: right
-        
+        align-items: right;
     }
     .footer-background {
         text-align: left;
     }
     .button {
-        
+        width: 100%; /* Full width buttons */
         border-radius: 30px;
         color: #fff;
         background: transparent;
@@ -204,10 +202,8 @@ body {
         font-size: 16px;
         font-weight: bold;
         transition: all 0.3s ease;
-        align-items: center;
     }
-    .left-section,
-    .right-section {
+    .left-section, .right-section {
         width: 100%;
         height: auto;
     }
@@ -232,18 +228,17 @@ body {
         max-width: 100%; 
         display: block; 
         margin: 100px; 
-        align-items: right;}
-        .button {
-        
-            border-radius: 30px;
-            color: #fff;
-            background: transparent;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            align-items: center;
-        }
+    }
+    .button {
+        width: 100%; /* Full width buttons */
+        border-radius: 30px;
+        color: #fff;
+        background: transparent;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
     .contact-btn {
         font-size: 0.8rem;
         padding: 8px 16px;

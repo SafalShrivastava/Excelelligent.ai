@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Outffit', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
@@ -15,7 +15,6 @@ header {
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     position: relative; /* For positioning child elements */
-    margin-left: 10px;
 }
 
 header h1 img {
@@ -100,7 +99,6 @@ main {
 .details input,
 .details select,
 .details textarea {
-    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 14px;
@@ -204,6 +202,11 @@ video {
 .highlight {
     color: #ff9900;
 }
+.image {
+    position: relative; /* To allow positioning relative to its current position */
+    top: 10px; /* Shift image slightly down (adjust the value as needed) */
+    left: 10px; /* Shift image slightly right (adjust the value as needed) */
+  }
 /* Overlay for zoom-in effect */
 .image-zoom-overlay {
     position: fixed;
