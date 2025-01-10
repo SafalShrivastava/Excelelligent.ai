@@ -1,88 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="src/Login.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Left Section -->
-        <div class="left-section">
-            <div class="logo">
-                <a href="Landing.html">
-                    <h1><img src="src/img/ExVision_Logo_Transparent.png" alt="Robot Eye" class="background-image"></h1>
-                </a>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload New Video</title>
+    <link rel="stylesheet" href="src/upload_new_video.css" />
+  </head>
+  <body>
+    <header>
+      <a href="Landing.html">
+        <h1>
+          <img
+            src="src/img/EXVision_Logo_Black_Transparent.png"
+            alt="Robot Eye"
+          />
+        </h1>
+      </a>
+      <div class="user-info">
+        <span>pranoliver@gmail.com</span>
+        <div class="icons">
+          <a href="Setting.html"
+            ><img src="src/img/settings.png" alt="Settings" class="icon"
+          /></a>
+          <a href="Landing.html"
+            ><img src="src/img/logout.png" alt="Logout" class="icon"
+          /></a>
         </div>
+      </div>
+    </header>
+    
+    <main>
+      <section class="details">
+        <a href="Your_videos.html"><img src="src/img/my_upload_videos.png" alt="my upload videos"/></a>
+        <h2>Details</h2>
+        <p>Fill the below details to upload the video</p>
+        <form id="video-upload-form"  action="http://localhost:3000/videos" method="POST" enctype="multipart/form-data">
+          <div class="file-upload">
+            <label for="file-input">Choose file</label>
+            <input
+              type="file"
+              id="file-input"
+              name="video"
+              accept="video/*"
+              required
+            />
+            <p>Upload your video file or drop here</p>
+          </div>
+           <label for="title">Title</label>
+                <input type="text" id="title" name="prompt" placeholder="Enter video title" required>
+                <label for="prompt-text">Description</label>
+                <textarea
+                id="Description"
+                name="Description"
+                placeholder="Description"
+                required
+              ></textarea>
+                <label for="category">Pre-defined category</label>
+                <select id="category">
+                    <option>Select pre-defined prompt</option>
+                    <option>Mountains</option>
+                    <option>Sunset</option>
+                </select>
+                <label for="prompts">Pre-defined prompts</label>
+                <select id="prompts">
+                    <option>Select pre-defined prompt</option>
+                    <option>Mountains looks beautiful</option>
+                    <option>Sun looks beautiful</option>
+                </select>
 
-        <!-- Right Section -->
-        <div class="right-section">
-            <header class="header">
-                <div class="header-buttons">
-                    <a href="contact_now.html"><button class="button contact-now">CONTACT NOW →</button></a>
-                </div>
-            </header>
-            <!-- Login Form -->
-            <form id="login-form">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-                <button type="submit" class="sign-in-btn">Sign In <span class="arrow">→</span></button>
-
-                <div class="links">
-                    <a href="#" class="forgot-password">Forgot Password?</a>
-                    <p>Don’t have an account? <a href="SignUp.html" class="sign-up">Sign Up</a></p>
-                </div>
-            </form>
-            <!-- Placeholder for login response -->
-            <div id="login-response"></div>
+          <label for="prompt-text">Prompt text</label>
+          <textarea
+            id="prompt-text"
+            name="prompt"
+            placeholder="Prompt"
+            required
+          ></textarea>
+          <label for="interval">Interval (Seconds)</label>
+          <input
+            type="number"
+            id="interval"
+            name="interval"
+            value="5"
+            required
+          />
+          <label for="accuracy-threshold">Accuracy threshold</label>
+          <input
+            type="range"
+            id="accuracy-threshold"
+            name="threshold"
+            min="0.0"
+            max="1.0"
+            step="0.1"
+            value="0.0"
+          />
+          <span id="threshold-value">0.0</span>
+          <div class="actions">
+            <button type="button" class="cancel">CANCEL</button>
+            <button type="submit" class="submit">SUBMIT</button>
+          </div>
+        </form>
+      </section>
+      <section class="preview">
+        <h2>Preview video</h2>
+        <div class="video-container">
+          <video id="video-preview" controls style="display: none"></video>
+          <div id="thumbnails-container">
+            <img src="https://via.placeholder.com/100" alt="Thumbnail 1" />
+            <img src="https://via.placeholder.com/100" alt="Thumbnail 2" />
+            <img src="https://via.placeholder.com/100" alt="Thumbnail 3" />
+            <img src="https://via.placeholder.com/100" alt="Thumbnail 4" />
+          </div>
+          <button class="save-analysis" style="display: none">
+            SAVE ANALYSIS
+          </button>
         </div>
-    </div>
+      </section>
+    </main>
+
     <footer class="footer-background">
-        <ul class="features-list">
-            <li><span class="highlight">Excelligent.ai</span> © 2024. All rights reserved.</li>
-        </ul>
+      <ul class="features-list">
+        <li>
+          <span class="highlight">Excelligent.ai</span> © 2024. All rights
+          reserved.
+        </li>
+      </ul>
     </footer>
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            // Handle form submission
-            $('#login-form').submit(function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Collect form data
-                const formData = {
-                    email: $('#email').val(),
-                    password: $('#password').val()
-                };
-
-                // Make AJAX request
-                $.ajax({
-                    url: 'http://localhost:3000/login', // Server endpoint for login
-                    type: 'POST',
-                    contentType: 'application/json', // Set content type as JSON
-                    data: JSON.stringify(formData), // Stringify the form data
-                    success: function(response) {
-                        // Display success message and redirect if needed
-                        $('#login-response').html('<p class="success">' + response + '</p>');
-                        setTimeout(() => {
-                            window.location.href = "Your_videos.html"; // Redirect after success
-                        }, 2000);
-                    },
-                    error: function(xhr) {
-                        // Display error message
-                        $('#login-response').html('<p class="error">Error: ' + xhr.responseText + '</p>');
-                    }
-                });
-            });
-        });
-    </script>
-</body>
+    <script src="src/JS/main.js"></script>
+    
+  </body>
 </html>

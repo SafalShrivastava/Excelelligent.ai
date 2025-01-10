@@ -1,111 +1,3 @@
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const sqlite3 = require('sqlite3').verbose();
-// const bcrypt = require('bcrypt');
-// const path = require('path');
-// const cors = require('cors'); // Add this to enable CORS
-
-// const app = express();
-
-// // Replace with your existing database path
-// const dbPath = path.resolve('./signup.db');  // Update this with the path to your existing DB
-// console.log(`Using database: ${dbPath}`);
-
-// // Connect to your existing SQLite database
-// const db = new sqlite3.Database(dbPath);
-
-// // Enable CORS
-// app.use(cors());
-
-// // Middleware to parse form data
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());  // To parse JSON data for AJAX requests
-
-// // Ensure the users table exists (it will not recreate it if it already exists)
-// db.run(`
-//         CREATE TABLE IF NOT EXISTS users (
-//         id INTEGER PRIMARY KEY AUTOINCREMENT,
-//         email TEXT NOT NULL UNIQUE,
-//         password TEXT NOT NULL
-//     )`
-    
-//     , (err) => {
-//     if (err) {
-//         console.error('Error creating table:', err.message);
-//     } else {
-//         console.log('Users table is ready');
-//     }
-// });
-
-// // Signup route
-// app.post('/signup', async (req, res) => {
-//     const { email, password, confirm_password } = req.body;
-
-//     // Validate passwords match
-//     if (password !== confirm_password) {
-//         return res.status(400).send('Passwords do not match!');
-//     }
-
-//     try {
-//         // Hash the password before storing it
-//         const hashedPassword = await bcrypt.hash(password, 10);
-
-//         // Insert user into the database
-//         db.run(
-//             `INSERT INTO users (email, password) VALUES (?, ?)`,
-//             [email, hashedPassword],
-//             function (err) {
-//                 if (err) {
-//                     if (err.message.includes('UNIQUE constraint failed')) {
-//                         return res.status(400).send('Email already exists!');
-//                     }
-//                     return res.status(500).send('Error: ' + err.message);
-//                 }
-//                 res.send('Signup successful! Please check your email.');
-//             }
-//         );
-//     } catch (error) {
-//         res.status(500).send('Error: ' + error.message);
-//     }
-// });
-
-// // Login route
-// app.post('/login', (req, res) => {
-
-//     const { email, password } = req.body;
-
-//     // Check if user exists in the database
-//     db.get(`SELECT * FROM users WHERE email = ?`, [email], async (err, user) => {
-//         if (err) {
-//             return res.status(500).send('Error: ' + err.message);
-//         }
-
-//         if (!user) {
-//             return res.status(400).send('Invalid email or password!');
-//         }
-
-//         try {
-//             // Compare the provided password with the hashed password in the database
-//             const isPasswordValid = await bcrypt.compare(password, user.password);
-
-//             if (!isPasswordValid) {
-//                 return res.status(400).send('Invalid email or password!');
-//             }
-
-//             res.send('Login successful!');
-//         } catch (error) {
-//             res.status(500).send('Error: ' + error.message);
-//         }
-//     });
-// });
-
-// // Start the server
-// const PORT = 3000;
-// app.listen(PORT, () => {
-//     console.log(`Server is running on http://localhost:${PORT}`);
-// });
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
@@ -122,8 +14,15 @@ console.log(`Using database: ${dbPath}`);
 // Connect to your existing SQLite database
 const db = new sqlite3.Database(dbPath);
 
+
 // Enable CORS
-app.use(cors());
+const corsOptions = {
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+
 
 // Middleware to parse form data
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -206,7 +105,41 @@ app.post('/login', (req, res) => {
       res.status(500).send('Error: ' + error.message);
     }
   });
+  
 });
+
+db.run(
+    `CREATE TABLE IF NOT EXISTS videos (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT,
+      description TEXT,
+      category TEXT,
+      prompt TEXT
+    )`,
+    (err) => {
+      if (err) {
+        console.error("Error creating table:", err.message);
+      }
+    }
+  );
+  
+  // Handle POST request to save video data
+  app.post("/videos", (req, res) => {
+    console.log("Received data:", req.body); // Log the received data
+    const { title, description, category, prompt } = req.body;
+  
+    // Insert the data into the database
+    const query = `INSERT INTO videos (title, description, category, prompt) VALUES (?, ?, ?, ?)`;
+    db.run(query, [title, description, category, prompt], function (err) {
+      if (err) {
+        console.error("Error inserting data:", err.message);
+        return res.status(500).send("Failed to insert data");
+      }
+      res.status(200).send("Data saved successfully");
+    });
+  });
+  
+
 
 // Start the server
 const PORT = 3000;

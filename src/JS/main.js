@@ -155,19 +155,29 @@
 
 
 
-// // This code to proceess videoo
-
- 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("video-upload-form");
     const fileInput = document.getElementById("file-input");
-    const promptInput = document.getElementById("prompt-text"); // Added this
-    const intervalInput = document.getElementById("interval"); // Added this
+    const promptInput = document.getElementById("prompt-text");
+    const intervalInput = document.getElementById("interval");
     const videoPreview = document.getElementById("video-preview");
     const thresholdInput = document.getElementById("accuracy-threshold");
     const thresholdValue = document.getElementById("threshold-value");
     const saveAnalysisButton = document.querySelector(".save-analysis");
     const thumbnailsContainer = document.getElementById("thumbnails-container");
+    const loadingIndicator = document.createElement("div");
+
+    // Add loading indicator styles dynamically
+    loadingIndicator.style.position = 'fixed';
+    loadingIndicator.style.top = '50%';
+    loadingIndicator.style.left = '50%';
+    loadingIndicator.style.transform = 'translate(-50%, -50%)';
+    loadingIndicator.style.fontSize = '20px';
+    loadingIndicator.style.fontWeight = 'bold';
+    loadingIndicator.style.color = '#ff9900';
+    loadingIndicator.style.display = 'none';  // Hide initially
+    loadingIndicator.textContent = "Processing...";
+    document.body.appendChild(loadingIndicator);
 
     // Update threshold value dynamically
     thresholdInput.addEventListener("input", () => {
@@ -213,77 +223,101 @@ document.addEventListener("DOMContentLoaded", () => {
         zoomOverlay.style.display = "none";
     });
 
-    // Close overlay when clicking outside the image
-    form.addEventListener("submit", async (event) => {
+    // Function to submit the form data to the backend
+    async function submitVideo(event) {
         event.preventDefault();
-    
-        // Validate file input
+
+        // Validate form inputs
         if (!fileInput.files.length) {
             alert("Please select a video file to upload.");
             return;
         }
-    
-        // Create FormData object
+
+        if (!promptInput.value.trim() || !intervalInput.value.trim() || !thresholdInput.value.trim()) {
+            alert("Please fill all the fields.");
+            return;
+        }
+
+        // Show loading indicator
+        loadingIndicator.style.display = 'block';
+
+        // Create FormData object to collect form data
         const formData = new FormData();
         formData.append("video", fileInput.files[0]);
         formData.append("prompt", promptInput.value);
         formData.append("interval", intervalInput.value);
         formData.append("threshold", thresholdInput.value);
-    
+
         try {
-            // Send POST request to the backend API
-            const response = await fetch(
+            // Send POST request to the backend API for video data
+            const response = await fetch("http://localhost:3000/videos", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                alert("Video data saved successfully!");
+                form.reset(); // Clear the form after successful submission
+            } else {
+                alert("Failed to save video data.");
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            alert("There was an error submitting the form.");
+        } finally {
+            loadingIndicator.style.display = 'none';
+        }
+
+        // Send the video for processing to generate thumbnails and analysis
+        try {
+            const videoResponse = await fetch(
                 "https://895e-2405-201-d01d-b80c-b0e2-bc53-5538-f7cb.ngrok-free.app/process_video/",
                 {
                     method: "POST",
                     body: formData,
                 }
             );
-    
-            if (!response.ok) {
-                throw new Error(`Server responded with status ${response.status}`);
+
+            if (!videoResponse.ok) {
+                throw new Error(`Server responded with status ${videoResponse.status}`);
             }
-    
-            const data = await response.json();
+
+            const data = await videoResponse.json();
             console.log("Response data:", data);
-    
+
             // Clear previous thumbnails
             thumbnailsContainer.innerHTML = "";
-    
+
             // Display thumbnails with timestamp and accuracy
             data.matches.forEach((match) => {
-                // Create a container for the thumbnail and caption
                 const thumbnailWrapper = document.createElement("div");
                 thumbnailWrapper.className = "thumbnail-wrapper";
-    
-                // Create the thumbnail image
+
                 const img = document.createElement("img");
                 img.src = `data:image/png;base64,${match.image_base64}`;
                 img.alt = `Thumbnail at ${match.time} seconds with ${match.accuracy} accuracy`;
                 img.title = `Time: ${match.time}s, Accuracy: ${match.accuracy}`;
-    
-                // Create a caption for timestamp and accuracy
+
                 const caption = document.createElement("div");
                 caption.textContent = `Time: ${match.time}s, Accuracy: ${match.accuracy}`;
-    
-                // Append image and caption to the wrapper
+
                 thumbnailWrapper.appendChild(img);
                 thumbnailWrapper.appendChild(caption);
-    
-                // Append the wrapper to the thumbnails container
+
                 thumbnailsContainer.appendChild(thumbnailWrapper);
             });
-    
+
             // Optionally show the save analysis button
             saveAnalysisButton.style.display = "block";
             alert("Video uploaded and frames generated successfully!");
-
-    
         } catch (error) {
             console.error("Error uploading video:", error);
             alert("Failed to process the video. Please try again.");
+        } finally {
+            loadingIndicator.style.display = 'none';
         }
-    });
-    
-    
+    }
+
+    // Add submit event listener to the form
+    form.addEventListener("submit", submitVideo);
 });
