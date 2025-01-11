@@ -34,7 +34,7 @@
         <a href="Your_videos.html"><img src="src/img/my_upload_videos.png" alt="my upload videos"/></a>
         <h2>Details</h2>
         <p>Fill the below details to upload the video</p>
-        <form id="video-upload-form"  action="http://localhost:3000/videos" method="POST" enctype="multipart/form-data">
+        <form id="video-upload-form"  action="http://localhost:3000/videos" method="POST">
           <div class="file-upload">
             <label for="file-input">Choose file</label>
             <input
@@ -50,7 +50,7 @@
                 <input type="text" id="title" name="prompt" placeholder="Enter video title" required>
                 <label for="prompt-text">Description</label>
                 <textarea
-                id="Description"
+                id="description"
                 name="Description"
                 placeholder="Description"
                 required
@@ -62,7 +62,7 @@
                     <option>Sunset</option>
                 </select>
                 <label for="prompts">Pre-defined prompts</label>
-                <select id="prompts">
+                <select id="prompt">
                     <option>Select pre-defined prompt</option>
                     <option>Mountains looks beautiful</option>
                     <option>Sun looks beautiful</option>
@@ -127,6 +127,58 @@
     </footer>
 
     <script src="src/JS/main.js"></script>
+    
+    <script>
+      document.getElementById('video-upload-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+  
+        const title = await document.getElementById('title').value.trim();
+  const description =await document.getElementById('description').value.trim();
+  const prompt = await document.getElementById('prompt').value.trim();
+  const category = await document.getElementById('category').value.trim();
+  const video_url = await document.getElementById('file-input').files[0];
+
+  // Log captured values
+  console.log('Captured Form Data:', { title, description, prompt, category, video_url});
+
+  // Validate that all required fields are filled out
+  if (!title || !description || !prompt || !category) {
+    alert('All fields must be filled out!');
+    return; 
+  // Stop the form from being submitted
+  }
+
+  
+        const videoData = {
+          title,
+          description,
+          prompt,
+          category,
+          video_url,
+        };
+  
+        fetch('http://localhost:3000/videos', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(videoData),
+})
+.then(response => {
+    if (response.ok) {
+        alert('Video added successfully!');
+    } else {
+        alert('Failed to add video');
+    }
+})
+.catch(error => {
+    console.error('Error:', error);
+    alert('Error occurred');
+});
+
+      });
+    </script>
+
     
   </body>
 </html>

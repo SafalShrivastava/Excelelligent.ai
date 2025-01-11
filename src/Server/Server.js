@@ -19,7 +19,6 @@ const db = new sqlite3.Database(dbPath);
 const corsOptions = {
   origin: '*', // Allow all origins
   methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
 
@@ -125,8 +124,9 @@ db.run(
   
   // Handle POST request to save video data
   app.post("/videos", (req, res) => {
-    console.log("Received data:", req.body); // Log the received data
+    
     const { title, description, category, prompt } = req.body;
+    console.log("Received data:", req.body); // Log the received data
   
     // Insert the data into the database
     const query = `INSERT INTO videos (title, description, category, prompt) VALUES (?, ?, ?, ?)`;
@@ -139,7 +139,16 @@ db.run(
     });
   });
   
-
+  app.get("/videos", (req, res) => {
+    const query = "SELECT * FROM videos";
+    db.all(query, [], (err, rows) => {
+      if (err) {
+        console.error("Error fetching data:", err.message);
+        return res.status(500).send("Failed to fetch data");
+      }
+      res.json(rows); // Send the data as JSON
+    });
+  });
 
 // Start the server
 const PORT = 3000;

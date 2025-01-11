@@ -27,7 +27,7 @@
         </a>
         
     </div> 
-    <div class="container">
+    <div id="video-container" class="container">
         <h2>Your Videos</h2>
         <table>
             <thead>
@@ -40,11 +40,11 @@
             <tbody id="videoList">
                 <tr>
                     <td><img src="https://via.placeholder.com/100" alt="Video thumbnail"></td>
-                    <td>
-                        <strong>Excelligent AI video</strong>
-                        <p>Excelligent AI, headquartered in Bangalore, India, stands as a beacon in the tech industry, renowned for driving significant advancements and efficiency in businesses.</p>
-                        <small>2024 Dec 20, 12:45 PM</small>
-                    </td>
+                        <td>
+                            <strong>Excelligent AI video</strong>
+                            <p>Excelligent AI, headquartered in Bangalore, India, stands as a beacon in the tech industry, renowned for driving significant advancements and efficiency in businesses.</p>
+                            <small>2024 Dec 20, 12:45 PM</small>
+                        </td>
                     <td class="actions">
                         <button class="edit">Preview</button>
                         <button class="delete">Delete</button>
@@ -59,6 +59,98 @@
             <li><span class="highlight">Excelligent.ai</span> © 2024. All rights reserved.</li>
         </ul>
     </footer>
-    
+    <!-- Placeholder container for dynamic content -->
+    <div ></div>
+
+    <script>
+        async function fetchAndDisplayVideos() {
+            try {
+                // Fetch video data from the backend
+                const response = await fetch('http://localhost:3000/videos');
+                const videos = await response.json();
+
+                // Reference to the table body
+                const tableBody = document.querySelector("#video-container tbody");
+
+                // Clear existing rows
+                tableBody.innerHTML = "";
+
+                // Loop through the fetched video data and populate rows
+                videos.forEach((video) => {
+                    // Create a new row
+                    const row = document.createElement("tr");
+
+                    // Video thumbnail cell
+                    const videoCell = document.createElement("td");
+                    const thumbnail = document.createElement("img");
+                    thumbnail.src = video.thumbnail || "src/img/Ai_img.webp"; // Use `video.thumbnail` or a placeholder
+                    thumbnail.alt = "Video Thumbnail";
+                    thumbnail.className = "video-thumbnail";
+                    videoCell.appendChild(thumbnail);
+
+                    // Title & Description cell
+                    const titleDescCell = document.createElement("td");
+                    titleDescCell.innerHTML = `
+                        <strong>${video.title}</strong>
+                        <p class="title-description">${video.description}</p>
+                    `;
+
+                    // Create the action buttons directly in the existing row
+                const actionCell = document.createElement("td");
+                actionCell.className = "actions";
+
+                     // Preview button
+                const previewButton = document.createElement("button");
+                previewButton.textContent = "Preview";
+                previewButton.className = "edit";
+                previewButton.addEventListener("click", () => {
+                    alert(`Preview for: ${video.title}`);
+                });
+
+                // Delete button
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.className = "delete";
+                deleteButton.addEventListener("click", async () => {
+                    const confirmation = confirm(`Are you sure you want to delete the video: ${video.title}?`);
+                    if (confirmation) {
+                        try {
+                            // Send a delete request to the backend
+                            const deleteResponse = await fetch(`http://localhost:3000/videos/${video.id}`, {
+                                method: 'DELETE'
+                            });
+                            
+                            // If delete is successful, remove the row from the table
+                            if (deleteResponse.ok) {
+                                row.remove(); // Remove the row from the DOM
+                                alert(`Video "${video.title}" deleted successfully.`);
+                            } else {
+                                alert('Failed to delete video.');
+                            }
+                        } catch (error) {
+                            console.error('Error deleting video:', error);
+                            alert('Error deleting video.');
+                        }
+                    }
+                });
+                     actionCell.appendChild(previewButton);
+                actionCell.appendChild(deleteButton);
+
+                    // Append cells to the row
+                    row.appendChild(videoCell);
+                    row.appendChild(titleDescCell);
+                    row.appendChild(actionCell);
+
+                    // Append the row to the table body
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching videos:", error);
+            }
+        }
+
+        // Fetch and populate the table on page load
+        fetchAndDisplayVideos();
+    </script>
 </body>
 </html>
