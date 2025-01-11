@@ -114,6 +114,8 @@ db.run(
       description TEXT,
       category TEXT,
       prompt TEXT
+      video_url TEXT NOT NULL,
+      upload_date DATETIME DEFAULT CURRENT_TIMESTAMP
     )`,
     (err) => {
       if (err) {
@@ -125,12 +127,12 @@ db.run(
   // Handle POST request to save video data
   app.post("/videos", (req, res) => {
     
-    const { title, description, category, prompt } = req.body;
+    const { title, description, category, prompt, video_url } = req.body;
     console.log("Received data:", req.body); // Log the received data
   
     // Insert the data into the database
-    const query = `INSERT INTO videos (title, description, category, prompt) VALUES (?, ?, ?, ?)`;
-    db.run(query, [title, description, category, prompt], function (err) {
+    const query = `INSERT INTO videos (title, description, category, prompt, video_url) VALUES (?, ?, ?, ?, ?)`;
+    db.run(query, [title, description, category, prompt, video_url], function (err) {
       if (err) {
         console.error("Error inserting data:", err.message);
         return res.status(500).send("Failed to insert data");
@@ -149,6 +151,30 @@ db.run(
       res.json(rows); // Send the data as JSON
     });
   });
+
+  // DELETE endpoint for deleting video by ID
+app.delete('/videos/:id', (req, res) => {
+  const videoId = req.params.id;  // Get the video ID from the URL parameter
+
+  // SQL query to delete the video by ID
+  const sql = `DELETE FROM videos WHERE id = ?`;
+
+  db.run(sql, [videoId], function (err) {
+      if (err) {
+          console.error('Error deleting video:', err);
+          return res.status(500).send('Error deleting video.');
+      }
+
+      // Check if any rows were deleted
+      if (this.changes === 0) {
+          return res.status(404).send('Video not found.');
+      }
+
+      // Send success response
+      res.status(200).send(`Video with ID ${videoId} deleted successfully.`);
+  });
+});
+
 
 // Start the server
 const PORT = 3000;

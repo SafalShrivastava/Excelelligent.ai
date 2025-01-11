@@ -35,7 +35,7 @@
         <h2>Details</h2>
         <p>Fill the below details to upload the video</p>
         <form id="video-upload-form"  action="http://localhost:3000/videos" method="POST">
-          <div class="file-upload">
+          <div class="file-upload"> 
             <label for="file-input">Choose file</label>
             <input
               type="file"
@@ -136,7 +136,7 @@
   const description =await document.getElementById('description').value.trim();
   const prompt = await document.getElementById('prompt').value.trim();
   const category = await document.getElementById('category').value.trim();
-  const video_url = await document.getElementById('file-input').files[0];
+  const video_url =  URL.createObjectURL(await document.getElementById('file-input').files[0]);
 
   // Log captured values
   console.log('Captured Form Data:', { title, description, prompt, category, video_url});

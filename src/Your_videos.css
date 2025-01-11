@@ -1,5 +1,5 @@
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit';
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
@@ -46,7 +46,7 @@ header .user-info .icons {
   
 }
 button {
-  font-size: 24px;
+  font-family: 'outfit';
   color: #ff9900;
   float: right;
   margin-right: 10px; /* Remove extra margin */
@@ -71,18 +71,6 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-.video-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #000;
-}
-
-.video-description {
-  font-size: 16px;
-  margin-bottom: 12px;
-  color: #444;
 }
 table {
   width: 100%;
@@ -177,7 +165,7 @@ table .actions .delete {
     padding: 50px 30px;
   }
   button {
-    font-size: 24px;
+    font-family: 'outfit';
     color: #ff9900;
     float: right;
     margin-right: 10px;

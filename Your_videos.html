@@ -39,7 +39,7 @@
             </thead>
             <tbody id="videoList">
                 <tr>
-                    <td><img src="https://via.placeholder.com/100" alt="Video thumbnail"></td>
+                    <td><video src="https://via.placeholder.com/100" alt="Video thumbnail"></td>
                         <td>
                             <strong>Excelligent AI video</strong>
                             <p>Excelligent AI, headquartered in Bangalore, India, stands as a beacon in the tech industry, renowned for driving significant advancements and efficiency in businesses.</p>
@@ -82,10 +82,11 @@
 
                     // Video thumbnail cell
                     const videoCell = document.createElement("td");
-                    const thumbnail = document.createElement("img");
-                    thumbnail.src = video.thumbnail || "src/img/Ai_img.webp"; // Use `video.thumbnail` or a placeholder
-                    thumbnail.alt = "Video Thumbnail";
+                    const thumbnail = document.createElement("video");
+                    thumbnail.src = video.video_url;
+                    thumbnail.controls = true;
                     thumbnail.className = "video-thumbnail";
+                    thumbnail.width=150;
                     videoCell.appendChild(thumbnail);
 
                     // Title & Description cell
@@ -104,38 +105,72 @@
                 previewButton.textContent = "Preview";
                 previewButton.className = "edit";
                 previewButton.addEventListener("click", () => {
-                    alert(`Preview for: ${video.title}`);
-                });
+                    // Create an overlay for the video preview
+                    const overlay = document.createElement("div");
+                overlay.style.position = "fixed";
+                overlay.style.top = "0";
+                overlay.style.left = "0";
+                overlay.style.width = "100%";
+                overlay.style.height = "100%";
+                overlay.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                overlay.style.display = "flex";
+                overlay.style.justifyContent = "center";
+                overlay.style.alignItems = "center";
+                overlay.style.zIndex = "1000";
+                
+                // Create the video element
+                const videoPreview = document.createElement("video");
+                videoPreview.src = video.video_url; // Set the video URL
+                videoPreview.controls = true; // Add controls to play/pause
+                videoPreview.style.width = "80%"; // Set video width
+                videoPreview.style.maxHeight = "80%"; // Ensure it fits the screen
+
+            overlay.appendChild(videoPreview);
+
+            // Close the overlay on click outside the video
+            overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) {
+        document.body.removeChild(overlay); // Remove overlay from DOM
+    }
+});
+            // Append the overlay to the body
+            document.body.appendChild(overlay);
+
+});
 
                 // Delete button
                 const deleteButton = document.createElement("button");
                 deleteButton.textContent = "Delete";
                 deleteButton.className = "delete";
                 deleteButton.addEventListener("click", async () => {
-                    const confirmation = confirm(`Are you sure you want to delete the video: ${video.title}?`);
-                    if (confirmation) {
-                        try {
-                            // Send a delete request to the backend
-                            const deleteResponse = await fetch(`http://localhost:3000/videos/${video.id}`, {
-                                method: 'DELETE'
-                            });
-                            
-                            // If delete is successful, remove the row from the table
-                            if (deleteResponse.ok) {
-                                row.remove(); // Remove the row from the DOM
-                                alert(`Video "${video.title}" deleted successfully.`);
-                            } else {
-                                alert('Failed to delete video.');
-                            }
-                        } catch (error) {
-                            console.error('Error deleting video:', error);
-                            alert('Error deleting video.');
-                        }
-                    }
-                });
+                const confirmation =await confirm(`Are you sure you want to delete the video: ${video.title}?`);
+    if (confirmation) {
+        try {
+            console.log(`id: ${video.id}`); // Use video.id here, not videos.id
+
+            // Send a delete request to the backend
+            const deleteResponse = await fetch(`http://localhost:3000/videos/${video.id}`, {
+                method: 'DELETE'
+            });
+            
+            // If delete is successful, remove the row from the table
+            if (deleteResponse.ok) {
+                row.remove(); // Remove the row from the DOM
+                alert(`Video "${video.title}" deleted successfully.`);
+            } else if (deleteResponse.status === 404) {
+                alert('Video not found.');
+            } else {
+                alert('Failed to delete video.');
+            }
+        } catch (error) {
+            console.error('Error deleting video:', error);
+            alert('Error deleting video.');
+        }
+    }
+});
                      actionCell.appendChild(previewButton);
                 actionCell.appendChild(deleteButton);
-
+                
                     // Append cells to the row
                     row.appendChild(videoCell);
                     row.appendChild(titleDescCell);

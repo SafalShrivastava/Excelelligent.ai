@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fileInput.addEventListener("change", () => {
         const file = fileInput.files[0];
         if (file) {
-            const fileURL = URL.createObjectURL(file);
+        const fileURL = URL.createObjectURL(file);
             videoPreview.src = fileURL;
             videoPreview.style.display = "block";
         } else {
