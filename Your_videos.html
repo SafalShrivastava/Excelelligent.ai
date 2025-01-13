@@ -12,24 +12,24 @@
         <div class="user-info"> 
             <span>pranoliver@gmail.com</span>
             <div class="icons">
-                <a href="Setting.html"><img src="src/img/settings.png" alt="Settings" class="icon"></a>
-                <a href="Landing.html"><img src="src/img/logout.png" alt+="Logout" class="icon"></a>
+                <a href="Setting.html"><img src="src/img/settings.png" alt="Settings" class="i  con"></a>
+                <a href="Landing.html"><img src="src/img/logout.png" alt="Logout" class="icon"></a>
             </div>
         </div>
     </header>  
-    
+
     <div class="button-group">
         <a href="Upload_new_video.html">
-        <button class="new-videos"><img src="src/img/new_videos.png" alt="new-videos"></button>
+            <button class="new-videos"><img src="src/img/new_videos.png" alt="new-videos"></button>
         </a>
         <a href="Promthub.html">
-        <button class="prompt-hub"><img src="src/img/promt_hub.png" alt="prompt-hub"></button>
+            <button class="prompt-hub"><img src="src/img/promt_hub.png" alt="prompt-hub"></button>
         </a>
-        
     </div> 
+
     <div id="video-container" class="container">
         <h2>Your Videos</h2>
-        <table>
+        <table class="table-container">
             <thead>
                 <tr>
                     <th>Videos</th>
@@ -37,154 +37,145 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="videoList">
+            <tbody>
                 <tr>
-                    <td><video src="https://via.placeholder.com/100" alt="Video thumbnail"></td>
-                        <td>
-                            <strong>Excelligent AI video</strong>
-                            <p>Excelligent AI, headquartered in Bangalore, India, stands as a beacon in the tech industry, renowned for driving significant advancements and efficiency in businesses.</p>
-                            <small>2024 Dec 20, 12:45 PM</small>
-                        </td>
-                    <td class="actions">
-                        <button class="edit">Preview</button>
-                        <button class="delete">Delete</button>
+                    <td><video src="src/img/sample-5.mp4" alt="Video 1 Thumbnail" style="height: 100px;" width="150px"></td>
+                    <td>
+                        <strong>Excelligent AI video</strong><br>
+                        Excelligent AI, headquartered in Bangalore, India, stands as a beacon in the tech industry, renowned for driving significant advancements and efficiency in businesses.<br>
+                        2024 Dec 20, 12:45 PM
+                    </td>
+                    <td class="action-icons">
+                        <img src="src/img/Play_icon.png" alt="Image Icon">
+                        <img src="src/img/delete_icon.png" alt="Trash Icon">
                     </td>
                 </tr>
-                <!-- Repeat similar rows as needed -->
+                <tr>
+                    <td><video src="src/img/sample-5.mp4" alt="Video 2 Thumbnail" style="height: 100px;" width="150px"></td>
+                    <td>
+                        <strong>Excelligent AI video</strong><br>
+                        Excelligent AI, headquartered in Bangalore, India, stands as a beacon in the tech industry, renowned for driving significant advancements and efficiency in businesses.<br>
+                        2024 Dec 20, 12:45 PM
+                    </td>
+                    <td class="action-icons">
+
+                    </td>
+                </tr>
+             
+
             </tbody>
         </table>
     </div>
+
     <footer class="footer-background">
         <ul class="features-list">
             <li><span class="highlight">Excelligent.ai</span> © 2024. All rights reserved.</li>
         </ul>
     </footer>
-    <!-- Placeholder container for dynamic content -->
-    <div ></div>
-
-    <script>
+     <script>
         async function fetchAndDisplayVideos() {
             try {
-                // Fetch video data from the backend
                 const response = await fetch('http://localhost:3000/videos');
                 const videos = await response.json();
 
-                // Reference to the table body
                 const tableBody = document.querySelector("#video-container tbody");
+                tableBody.innerHTML = ""; // Clear existing rows
 
-                // Clear existing rows
-                tableBody.innerHTML = "";
-
-                // Loop through the fetched video data and populate rows
                 videos.forEach((video) => {
-                    // Create a new row
                     const row = document.createElement("tr");
 
-                    // Video thumbnail cell
+                    // Video cell
                     const videoCell = document.createElement("td");
-                    const thumbnail = document.createElement("video");
-                    thumbnail.src = video.video_url;
-                    thumbnail.controls = true;
-                    thumbnail.className = "video-thumbnail";
-                    thumbnail.width=150;
-                    videoCell.appendChild(thumbnail);
+                    const videoElement = document.createElement("video");
+                    videoElement.src = video.video_url;
+                    videoElement.controls = true;
+                    videoElement.width = 150;
+                    videoCell.appendChild(videoElement);
 
                     // Title & Description cell
                     const titleDescCell = document.createElement("td");
                     titleDescCell.innerHTML = `
                         <strong>${video.title}</strong>
-                        <p class="title-description">${video.description}</p>
+                        <p>${video.description}</p>
                     `;
 
-                    // Create the action buttons directly in the existing row
-                const actionCell = document.createElement("td");
-                actionCell.className = "actions";
+                    // Action cell with buttons
+                    const actionCell = document.createElement("td");
+                    actionCell.className = "actions";
 
-                     // Preview button
-                const previewButton = document.createElement("button");
-                previewButton.textContent = "Preview";
-                previewButton.className = "edit";
-                previewButton.addEventListener("click", () => {
-                    // Create an overlay for the video preview
-                    const overlay = document.createElement("div");
-                overlay.style.position = "fixed";
-                overlay.style.top = "0";
-                overlay.style.left = "0";
-                overlay.style.width = "100%";
-                overlay.style.height = "100%";
-                overlay.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-                overlay.style.display = "flex";
-                overlay.style.justifyContent = "center";
-                overlay.style.alignItems = "center";
-                overlay.style.zIndex = "1000";
-                
-                // Create the video element
-                const videoPreview = document.createElement("video");
-                videoPreview.src = video.video_url; // Set the video URL
-                videoPreview.controls = true; // Add controls to play/pause
-                videoPreview.style.width = "80%"; // Set video width
-                videoPreview.style.maxHeight = "80%"; // Ensure it fits the screen
+                    // Preview button
+                    const previewButton = document.createElement("img");
+                    previewButton.textContent = "Preview";
+                    previewButton.className = "preview";
+                    previewButton.src = "src/img/Play_icon.png"
+                    previewButton.addEventListener("click", () => {
+                        const overlay = document.createElement("div");
+                        overlay.style.position = "fixed";
+                        overlay.style.top = "0";
+                        overlay.style.left = "0";
+                        overlay.style.width = "100%";
+                        overlay.style.height = "100%";
+                        overlay.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                        overlay.style.display = "flex";
+                        overlay.style.justifyContent = "center";
+                        overlay.style.alignItems = "center";
+                        overlay.style.zIndex = "1000";
 
-            overlay.appendChild(videoPreview);
+                        const videoPreview = document.createElement("video");
+                        videoPreview.src = video.video_url;
+                        videoPreview.controls = true;
+                        videoPreview.style.width = "80%";
+                        videoPreview.style.maxHeight = "80%"; // Ensure it fits the screen
 
-            // Close the overlay on click outside the video
-            overlay.addEventListener("click", (event) => {
-    if (event.target === overlay) {
-        document.body.removeChild(overlay); // Remove overlay from DOM
-    }
-});
-            // Append the overlay to the body
-            document.body.appendChild(overlay);
+                        overlay.appendChild(videoPreview);
 
-});
+                        overlay.addEventListener("click", (event) => {
+                            if (event.target === overlay) {
+                                document.body.removeChild(overlay);
+                            }
+                        });
 
-                // Delete button
-                const deleteButton = document.createElement("button");
-                deleteButton.textContent = "Delete";
-                deleteButton.className = "delete";
-                deleteButton.addEventListener("click", async () => {
-                const confirmation =    await confirm(`Are you sure you want to delete the video: ${video.title}?`);
-    if (confirmation) {
-        try {
-            fetch(`http://localhost:3000/videos/${video.id}`, {
-    method: 'DELETE'
-})
-.then(response => {
-    if (response.ok) {
-        row.remove(); // Remove the row from the DOM
-        alert(`Video "${video.title}" deleted successfully.`);
-    } else if (response.status === 404) {
-        alert('Video not found.');
-    } else {
-        alert('Failed to delete video.');
-    }
-}).catch(error => {
-    console.error('Error:', error);
-    alert('Error occurred');
-});
-        } catch (error) {
-            console.error('Error deleting video:', error);
-            alert('Error deleting video.');
-        }
-    }
-});
-                     actionCell.appendChild(previewButton);
-                actionCell.appendChild(deleteButton);
-                
-                    // Append cells to the row
+                        document.body.appendChild(overlay);
+                    });
+
+                    // Delete button
+                    const deleteButton = document.createElement("img");
+                    deleteButton.textContent = "Delete";
+                    deleteButton.src = "src/img/delete_icon.png"
+                    deleteButton.className = "delete";
+                    deleteButton.addEventListener("click", async () => {
+                        const confirmation = confirm(`Are you sure you want to delete "${video.title}"?`);
+                        if (confirmation) {
+                            try {
+                                const deleteResponse = await fetch(`http://localhost:3000/videos/${video.id}`, { method: "DELETE" });
+                                if (deleteResponse.ok) {
+                                    row.remove(); // Remove the row from the table
+                                    alert(`"${video.title}" deleted successfully.`);
+                                } else {
+                                    alert("Failed to delete video. Please try again.");
+                                }
+                            } catch (error) {
+                                console.error("Error deleting video:", error);
+                                alert("Error deleting video.");
+                            }
+                        }
+                    });
+
+                    actionCell.appendChild(previewButton);
+                    actionCell.appendChild(deleteButton);
+
                     row.appendChild(videoCell);
                     row.appendChild(titleDescCell);
                     row.appendChild(actionCell);
 
-                    // Append the row to the table body
                     tableBody.appendChild(row);
                 });
             } catch (error) {
                 console.error("Error fetching videos:", error);
+                alert("Failed to load videos. Please try again later.");
             }
         }
 
-        // Fetch and populate the table on page load
         fetchAndDisplayVideos();
     </script>
 </body>

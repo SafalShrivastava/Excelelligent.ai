@@ -28,61 +28,73 @@
         </div>
       </div>
     </header>
-    
+
     <main>
       <section class="details">
-        <a href="Your_videos.html"><img src="src/img/my_upload_videos.png" alt="my upload videos"/></a>
         <h2>Details</h2>
-        <p>Fill the below details to upload the video</p>
-        <form id="video-upload-form"  action="http://localhost:3000/videos" method="POST">
-          <div class="file-upload"> 
-            <label for="file-input">Choose file</label>
+        <p1>Fill the below details to upload the video</p1>
+        <form
+          id="video-upload-form"
+          action="http://localhost:3000/videos"
+          method="POST"
+        >
+          <div class="file-upload">
+            <label for="file-input" class="file-input-label"
+              ><img
+                src="src/img/choose file.png"
+                alt="Upload Icon"
+                width="150"
+                height="40"
+            /></label>
             <input
               type="file"
               id="file-input"
               name="video"
               accept="video/*"
               required
+              style="display: none"
             />
             <p>Upload your video file or drop here</p>
           </div>
-           <label for="title">Title</label>
-                <input type="text" id="title" name="prompt" placeholder="Enter video title" required>
-                <label for="prompt-text">Description</label>
-                <textarea
-                id="description"
-                name="Description"
-                placeholder="Description"
-                required
-              ></textarea>
-                <label for="category">Pre-defined category</label>
-                <select id="category">
-                    <option>Select pre-defined prompt</option>
-                    <option>Mountains</option>
-                    <option>Sunset</option>
-                </select>
-                <label for="prompts">Pre-defined prompts</label>
-                <select id="prompt">
-                    <option>Select pre-defined prompt</option>
-                    <option>Mountains looks beautiful</option>
-                    <option>Sun looks beautiful</option>
-                </select>
+          <label for="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder=" Enter video title"
+            required
+          />
+          <label for="Description">Description</label>
+          <input
+            type="text"
+            id="Description"
+            name="Description"
+            placeholder=" Enter Description"
+            required
+          />
 
-          <label for="prompt-text">Prompt text</label>
+          <label for="category">Pre-defined category</label>
+          <select id="category">
+            <option>Select pre-defined prompt</option>
+            <option>Mountains</option>
+            <option>Sunset</option>
+          </select>
+          <label for="prompts">Pre-defined prompts</label>
+          <select id="prompt">
+            <option>Select pre-defined prompt</option>
+            <option>Mountains looks beautiful</option>
+            <option>Sun looks beautiful</option>
+          </select>
+
+          <label for="prompt-text"> Prompt text </label>
           <textarea
             id="prompt-text"
             name="prompt"
-            placeholder="Prompt"
-            required
+            placeholder=" Prompt"
+            style="height: 100px"
           ></textarea>
           <label for="interval">Interval (Seconds)</label>
-          <input
-            type="number"
-            id="interval"
-            name="interval"
-            value="5"
-            required
-          />
+          <input type="number" id="interval" name="interval" value="5" />
           <label for="accuracy-threshold">Accuracy threshold</label>
           <input
             type="range"
@@ -100,7 +112,11 @@
           </div>
         </form>
       </section>
-      <section class="preview">
+      <section class="preview" style="text-align: right">
+        <a href="Your_videos.html"
+          ><img src="src/img/my_upload_videos.png" alt="my upload videos"
+        /></a>
+
         <h2>Preview video</h2>
         <div class="video-container">
           <video id="video-preview" controls style="display: none"></video>
@@ -109,10 +125,10 @@
             <img src="https://via.placeholder.com/100" alt="Thumbnail 2" />
             <img src="https://via.placeholder.com/100" alt="Thumbnail 3" />
             <img src="https://via.placeholder.com/100" alt="Thumbnail 4" />
+            <img src="https://via.placeholder.com/100" alt="Thumbnail 4" />
+            <img src="https://via.placeholder.com/100" alt="Thumbnail 4" />
           </div>
-          <button class="save-analysis" style="display: none">
-            SAVE ANALYSIS
-          </button>
+          <button class="save-analysis">SAVE ANALYSIS</button>
         </div>
       </section>
     </main>
@@ -127,58 +143,130 @@
     </footer>
 
     <script src="src/JS/main.js"></script>
-    
     <script>
-      document.getElementById('video-upload-form').addEventListener('submit', async function(event) {
-        event.preventDefault();
-  
-        const title = await document.getElementById('title').value.trim();
-  const description =await document.getElementById('description').value.trim();
-  const prompt = await document.getElementById('prompt').value.trim();
-  const category = await document.getElementById('category').value.trim();
-  const video_url =  URL.createObjectURL(await document.getElementById('file-input').files[0]);
+      document
+        .getElementById("video-upload-form")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
 
-  // Log captured values
-  console.log('Captured Form Data:', { title, description, prompt, category, video_url});
+          const title = await document.getElementById("title").value.trim();
+          const description = await document.getElementById("Description").value.trim();
+          // const prompt = await document.getElementById("prompt").value.trim();
+          // const category = await document
+          //   .getElementById("category")
+          //   .value.trim();
+             const video_url = URL.createObjectURL(
+            await document.getElementById("file-input").files[0]
+          );
 
-  // Validate that all required fields are filled out
-  if (!title || !description || !prompt || !category) {
-    alert('All fields must be filled out!');
-    return; 
-  // Stop the form from being submitted
-  }
+          // Log captured values
+          console.log("Captured Form Data:", {
+            title,
+            description,
+            video_url,
+          });
 
-  
-        const videoData = {
-          title,
-          description,
-          prompt,
-          category,
-          video_url,
-        };
-  
-        fetch('http://localhost:3000/videos', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(videoData),
-})
-.then(response => {
-    if (response.ok) {
-        alert('Video added successfully!');
-    } else {
-        alert('Failed to add video');
-    }
-})
-.catch(error => {
-    console.error('Error:', error);
-    alert('Error occurred');
-});
+          // Validate that all required fields are filled out
+          if (!title || !description) {
+            alert("All fields must be filled out!");
+            return;
+            // Stop the form from being submitted
+          }
 
-      });
+          const videoData = {
+            title,
+            description,
+            video_url,
+          };
+
+          fetch("http://localhost:3000/videos", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(videoData),
+          })
+            .then((response) => {
+              if (response.ok) {
+                alert("Video added successfully!");
+              } else {
+                alert("Failed to add video");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Error occurred");
+            });
+        });
     </script>
-
+    <script>
+      // Fetch categories from the API
+      async function fetchCategories() {
+        try {
+          const response = await fetch("http://localhost:3000/categories");
+          const categories = await response.json();
+          const categorySelect = document.getElementById("category");
+    
+          categorySelect.innerHTML = '<option value="">Select pre-defined category</option>';
+          categories.forEach((category) => {
+            const option = document.createElement("option");
+            option.value = category;
+            option.textContent = category;
+            categorySelect.appendChild(option);
+          });
+        } catch (error) {
+          console.error("Error fetching categories:", error);
+        }
+      }
+    
+      // Fetch prompts for the selected category
+      async function fetchPrompts(category) {
+        try {
+          const response = await fetch(`http://localhost:3000/prompthub/${category}`);
+          const prompts = await response.json();
+          const promptSelect = document.getElementById("prompt");
+    
+          promptSelect.innerHTML = '<option value="">Select pre-defined prompt</option>';
+          prompts.forEach((item) => {
+            if (item.prompt !== "-- select --") {
+              const option = document.createElement("option");
+              option.value = item.prompt;
+              option.textContent = item.prompt;
+              promptSelect.appendChild(option);
+            }
+          });
+        } catch (error) {
+          console.error("Error fetching prompts:", error);
+        }
+      }
+    
+      // Populate "Prompt Text" based on selected prompt
+      function autoFillPromptText() {
+        const promptSelect = document.getElementById("prompt");
+        const promptText = document.getElementById("prompt-text");
+    
+        promptSelect.addEventListener("change", () => {
+          const selectedPrompt = promptSelect.value;
+          promptText.value = selectedPrompt || ""; // Autofill or clear the prompt text
+        });
+      }
+    
+      // Fetch categories and set up event listeners on page load
+      window.onload = function () {
+        fetchCategories();
+    
+        // When category changes, fetch prompts
+        document.getElementById("category").addEventListener("change", function () {
+          const selectedCategory = this.value;
+          if (selectedCategory) {
+            fetchPrompts(selectedCategory);
+          }
+        });
+    
+        // Autofill prompt text on prompt selection
+        autoFillPromptText();
+      };
+    </script>
     
   </body>
 </html>

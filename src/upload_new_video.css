@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-    font-family: 'Outffit';
+    font-family: 'Outfit', sans-serif; font-weight: 400; /* Regular weight */
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
@@ -18,6 +18,7 @@ header {
 }
 
 header h1 img {
+    margin-left: 60px;
     height: 40px;
 }
 
@@ -26,7 +27,7 @@ header .user-info {
     padding: 10px;
     margin: 20px;
     align-items: center;
-    margin-right: 10px;
+    margin-right: 40px;
     gap: 50px; /* Adjusted for more space between icons */
 }
 
@@ -38,6 +39,7 @@ header .user-info span {
 header .user-info .icons {
     display: flex;
     gap: 30px;
+    margin-right: 40px;
 }
 
 header .user-info .icons .icon {
@@ -67,22 +69,28 @@ main {
 
 .details,
 .preview {
-    background-color: #fff;
+    /* background-color: #fff; */
     border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);    */
+    padding: 0px 20px;
     flex: 1;
     min-width: 280px; /* Ensure a minimum width for smaller screens */
     margin-bottom: 20px; /* Add margin for spacing on smaller screens */
+    margin-left: 40px;
+    margin-right: 80px
 }
 
 .details h2 {
-    color: #ff9900;
+    margin-bottom: 0PX;
+    color: #000;
 }
-
+.details p1{
+    margin-bottom: 20px;
+    color: #000;
+}
 .details p {
     margin-bottom: 20px;
-    color: #666;
+    color: #fff;
 }
 
 .details form {
@@ -91,34 +99,35 @@ main {
 }
 
 .details label {
-    margin-top: 15px;
-    margin-bottom: 5px;
-    color: #333;
+    margin-top: 20px;
+    margin-bottom: 5px; 
+    color: #000;
 }
 
 .details input,
 .details select,
 .details textarea {
     border: 1px solid #ddd;
-    border-radius: 5px;
+    color: #333333ad;
     font-size: 14px;
     width: 100%;
+    height: 40PX;
+    ;
 }
+textarea::placeholder { height: 100px; /* Adjust the size as needed */ }
 
 .file-upload {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    border: 2px dashed #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
+    margin-TOP: 20px;
+    background :linear-gradient(90deg, #8186D2 0%, #1D204B 100%);
 }
 
 .file-upload label {
-    background-color: #ff9900;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
@@ -132,12 +141,12 @@ main {
 }
 
 .actions .cancel {
-    background-color: #ccc;
+    background-color: #666666;
     color: #fff;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .actions .submit {
@@ -145,13 +154,16 @@ main {
     color: #fff;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
 }
 
+
 .preview h2 {
+    margin-top: 100px;
+    text-align: left;
     margin-bottom: 20px;
-    color: #333;
+    color: #222222;
 }
 
 .video-container {
@@ -167,37 +179,42 @@ video {
 }
 
 #thumbnails-container {
-    display:flex;flex-wrap: wrap; /* Align items horizontally */
-    overflow-x: auto; /* Enable horizontal scrolling if needed */
-    white-space: wrap; /* Prevent wrapping to the next line */
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping to the next line */
+    overflow-x: auto; /* Enable horizontal scrolling */
     gap: 10px; /* Space between thumbnails */
     padding: 10px;
-    border: 1px solid #ddd; /* Optional border for container */
-    justify-content: space-between;
+    justify-content: flex-start; /* Align items at the start */
+    width: 100%; /* Full width */
+    height: 150px; /* Set a fixed height for vertical scroll (if needed) */
+    box-sizing: border-box; /* Ensure padding is included in height/width */
+    scrollbar-width: thin; /* For Firefox: thinner scrollbar */
+    scrollbar-color: #888 #e0e0e0; /* For Firefox: thumb and track colors */
 }
 
-.thumbnail-wrapper {
-    display: inline-block; /* Ensure each image stays in a single line */
-    text-align: center;
-    max-width: 150px; /* Adjust based on your thumbnail size */
+/* Optional: Styling for the scrollbar for Webkit-based browsers (Chrome, Edge, Safari) */
+#thumbnails-container::-webkit-scrollbar {
+    height: 8px; /* Height of horizontal scrollbar */
 }
 
-.thumbnail-wrapper img {
-    max-width: 100%; /* Ensure images fit within the wrapper */
-    height: auto;
-    cursor: pointer;
+#thumbnails-container::-webkit-scrollbar-thumb {
+    background-color: #888; /* Scrollbar thumb color */
+    border-radius: 4px; /* Rounded corners for thumb */
 }
 
-
+#thumbnails-container::-webkit-scrollbar-track {
+    background-color: #e0e0e0; /* Scrollbar track color */
+}
 
 .save-analysis {
     background-color: #ff9900;
     color: #fff;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    margin-right: -420px;
+    font-weight: bold;
 }
 
 .highlight {
@@ -238,6 +255,12 @@ video {
     color: white;
     cursor: pointer;
 }
+.image-link {
+    display: block;  /* Make the anchor tag a block element */
+    text-align: right; 
+    float: right; /* Align child elements (image) to the right */
+    margin-right: 40px;
+}
 
 /* Footer Styles */
 .footer-background {
@@ -250,34 +273,37 @@ video {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    header .user-info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .top-actions {
-        justify-content: center;
-        width: 100%;
-        margin-top: 10px;
-    }
-}
-
-@media (max-width: 480px) {
     header {
         flex-direction: column;
         align-items: flex-start;
     }
 
     header .user-info {
+        padding: 10px;
         margin: 10px 0;
+        gap: 20px;
     }
 
-    main {
-        padding: 10px;
+    header .user-info span {
+        font-size: 12px;
+    }
+
+    header .user-info .icons {
+        gap: 20px;
+    }
+
+    header .user-info .icons .icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .container {
+        padding: 50px 20px;
     }
 
     .details,
     .preview {
+        margin: 10px;
         padding: 10px;
     }
 
@@ -291,8 +317,74 @@ video {
         margin-bottom: 10px;
     }
 
-    .thumbnails img {
-        width: 60px;
-        height: 45px;
+    #thumbnails-container {
+        padding: 10px;
+        justify-content: center;
+    }
+
+    .save-analysis {
+        margin-right: 0;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header h1 img {
+        margin-left: 0;
+        height: 30px;
+    }
+
+    header .user-info {
+        padding: 10px;
+        margin: 10px 0;
+        gap: 10px;
+    }
+
+    header .user-info span {
+        font-size: 10px;
+    }
+
+    header .user-info .icons {
+        gap: 10px;
+    }
+
+    header .user-info .icons .icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .container {
+        padding: 20px 10px;
+    }
+
+    .details,
+    .preview {
+        margin: 5px;
+        padding: 10px;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .actions .cancel,
+    .actions .submit {
+        margin-bottom: 10px;
+    }
+
+    #thumbnails-container {
+        padding: 10px;
+        justify-content: center;
+    }
+
+    .save-analysis {
+        margin-right: 0;
+        margin-top: 20px;
     }
 }

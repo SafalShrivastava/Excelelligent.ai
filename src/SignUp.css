@@ -1,59 +1,205 @@
 /* General body styles */
 body {
-    font-family: 'Outfit', sans-serif;
-    margin: 0;
-    padding: 0  ;
-    background-color: #000;
-    color: #fff;
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* min-height: 100vh; */
-    overflow-x: hidden; /* Prevent horizontal scroll */
+  font-family: "Outfit", sans-serif;
+  font-weight: 400; /* Regular weight */
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* min-height: 100vh; */
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Container */
 .container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100vh;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Left Section */
 .left-section {
-    width: 50%;
-    position: relative;
-    background-image: url('../src/img/robot.png'); 
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+  width: 50%;
+  position: relative;
+  background-image: url("../src/img/robot.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .left-section .logo img {
-    width: 267.08px;
-    height: 39.56px;
-    max-width: 100%; 
-    display: block; 
-    margin: 0 auto; 
-    align-items: right;
+  width: 267.08px;
+  height: 39.56px;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  align-items: right;
 }
 
 .header-buttons {
-    position: absolute;
-    top: 20px;
-    right: 140px;
-    display: flex;
-    gap: 10px;
+  position: absolute;
+  top: 20px;
+  right: 140px;
+  display: flex;
+  gap: 10px;
 }
 
 .button {
-    height: 51px;
-    padding: 10px 20px;
-    border: 1px solid #fff;
+  height: 51px;
+  padding: 10px 20px;
+  border: 1px solid #ffffff00;
+  border-radius: 30px;
+  color: #fff;
+  background: #222222;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.button.sign-in {
+  border: 2px solid #fff; /* Change this to your desired border color */
+  background-color: transparent; /* Change this to your desired background color */
+  color: #fff; /* This ensures the text color contrasts well with the background */
+}
+
+.button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Right Section */
+.right-section {
+  width: 50%;
+  background-color: #0a0809;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right-section .header {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.contact-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.contact-btn:hover {
+  background-color: #444;
+}
+
+/* Form styles */
+.login-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.login-form input {
+  width: 550px; /* Ensure full-width input for better UX */
+  height: 30px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #333;
+  background-color: #fff;
+  color: #000;
+}
+
+.login-form input::placeholder {
+  color: #999999;
+}
+
+/* Sign In Button */
+.sign-in-btn {
+  width: 570px; /* Full width for better usability */
+  height: 50px;
+  padding: 10px;
+  background-color: #f57c00;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sign-in-btn:hover {
+  background-color: #d76900;
+}
+
+.sign-in-btn .arrow {
+  font-weight: bold;
+}
+
+/* Links */
+.links {
+  text-align: center;
+  margin-top: 15px;
+  padding-right: 15%;
+}
+
+.links a {
+  color: #f57c00;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.highlight {
+  color: #ff9900;
+}
+
+/* Footer */
+.footer-background {
+  position: fixed; /* Fix the footer at the bottom */
+  bottom: 0;
+  width: 100%; /* Ensure it spans the whole page width */
+  color: white; /* White text color for contrast */
+  text-align: center;
+  padding: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .left-section .logo img {
+    width: 267.08px;
+    height: 39.56px;
+    max-width: 100%;
+    display: block;
+    margin: 100px;
+    align-items: right;
+  }
+  .footer-background {
+    text-align: left;
+  }
+  .button {
+    width: 100%; /* Full width buttons */
     border-radius: 30px;
     color: #fff;
     background: transparent;
@@ -61,195 +207,55 @@ body {
     font-size: 16px;
     font-weight: bold;
     transition: all 0.3s ease;
-}
+  }
+  .left-section,
+  .right-section {
+    width: 100%;
+    height: auto;
+  }
 
-.button:hover {
-    background-color: #fff;
-    color: #000;
-}
+  .left-section {
+    min-height: 300px;
+    padding: 20px;
+  }
 
-/* Right Section */
-.right-section {
-    width: 50%;
-    background-color: #0A0809;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.right-section .header {
-    text-align: right;
-    margin-bottom: 20px;
-}
-
-.contact-btn {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s;  
-}
-
-.contact-btn:hover {
-    background-color: #444;
-}
-
-/* Form styles */
-.login-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-}
-
-.login-form input {
-    width: 90%; /* Ensure full-width input for better UX */
-    height: 30px;
+  .right-section {
     padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #000;
-}
-
-.login-form input::placeholder {
-    color: #000;
-}
-
-/* Sign In Button */
-.sign-in-btn {
-    width: 93%; /* Full width for better usability */
-    height: 50px;
-    padding: 10px;
-    background-color: #f57c00;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.sign-in-btn:hover {
-    background-color: #d76900;
-}
-
-.sign-in-btn .arrow {
-    font-weight: bold;
-}
-
-/* Links */
-.links {
-    text-align: center;
-    margin-top: 15px;
-    padding-right: 15%;
-}
-
-.links a {
-    color: #f57c00;
-    text-decoration: none;
-    font-size: 0.9rem;
-}
-
-.links a:hover {
-    text-decoration: underline;
-}
-
-.highlight {
-    color: #ff9900;
-}
-
-/* Footer */
-.footer-background {
-    position: fixed; /* Fix the footer at the bottom */
-    bottom: 0;
-    width: 100%; /* Ensure it spans the whole page width */
-    color: white; /* White text color for contrast */
-    text-align: center;
-    padding: 10px;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-    .left-section .logo img {
-        width: 267.08px;
-        height: 39.56px;
-        max-width: 100%; 
-        display: block; 
-        margin: 100px; 
-        align-items: right;
-    }
-    .footer-background {
-        text-align: left;
-    }
-    .button {
-        width: 100%; /* Full width buttons */
-        border-radius: 30px;
-        color: #fff;
-        background: transparent;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-    }
-    .left-section, .right-section {
-        width: 100%;
-        height: auto;
-    }
-
-    .left-section {
-        min-height: 300px;
-        padding: 20px;
-    }
-
-    .right-section {
-        padding: 10px;
-    }
+  }
 }
 
 @media (max-width: 480px) {
-    .left-section .logo h1 {
-        font-size: 1.5rem;
-    }
-    .left-section .logo img {
-        width: 267.08px;
-        height: 39.56px;
-        max-width: 100%; 
-        display: block; 
-        margin: 100px; 
-    }
-    .button {
-        width: 100%; /* Full width buttons */
-        border-radius: 30px;
-        color: #fff;
-        background: transparent;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-    }
-    .contact-btn {
-        font-size: 0.8rem;
-        padding: 8px 16px;
-    }
+  .left-section .logo h1 {
+    font-size: 1.5rem;
+  }
+  .left-section .logo img {
+    width: 267.08px;
+    height: 39.56px;
+    max-width: 100%;
+    display: block;
+    margin: 100px;
+  }
+  .button {
+    width: 100%; /* Full width buttons */
+    border-radius: 30px;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  .contact-btn {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
 
-    .sign-in-btn {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
+  .sign-in-btn {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
 
-    .links a {
-        font-size: 0.8rem;
-    }
+  .links a {
+    font-size: 0.8rem;
+  }
 }

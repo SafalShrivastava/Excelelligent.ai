@@ -1,6 +1,6 @@
 /* General body styles */
 body {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', sans-serif; font-weight: 400; /* Regular weight */
     margin: 0;
     padding: 0;
     background-color: #000; 
@@ -21,6 +21,10 @@ body {
     max-width: 100%;
     overflow: hidden;
 
+}
+.separator {
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
 }
 
 /* Left Section */
@@ -63,9 +67,9 @@ body {
 }
 
 .contact-now-btn {
-    background: transparent;
+    background: #222222;;
     color: #fff;
-    border: 1px solid #fff;
+    border: 1px solid #ffffff00;
     padding: 10px 20px;
     border-radius: 30px;
     cursor: pointer;
@@ -97,9 +101,8 @@ body {
     width: 100%;
     padding: 10px;
     border: 1px solid #333;
-    border-radius: 5px;
     background-color: #fff;
-    color: #000;
+    color: #999999;
     font-size: 14px;
 }
 
@@ -118,7 +121,6 @@ body {
     padding: 10px;
     background-color: #f57c00;
     border: none;
-    border-radius: 5px;
     color: #fff;
     font-size: 16px;
     font-weight: bold;

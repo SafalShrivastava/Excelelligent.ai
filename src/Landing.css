@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', sans-serif; font-weight: 400; /* Regular weight */
   margin: 0;
   padding: 0;
   background-color: #000;
@@ -33,14 +33,19 @@ body {
 .button {
   height: 51px;
   padding: 10px 20px;
-  border: 1px solid #fff;
+  border: 1px solid #ffffff00;
   border-radius: 30px;
   color: #fff;
-  background: transparent;
+  background: #222222;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
   transition: all 0.3s ease;
+}
+.button.sign-in {
+  border: 2px solid #fff; /* Change this to your desired border color */
+  background-color: transparent; /* Change this to your desired background color */
+  color: #fff; /* This ensures the text color contrasts well with the background */
 }
 
 .button:hover {

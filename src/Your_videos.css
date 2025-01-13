@@ -1,5 +1,6 @@
 body {
-  font-family: 'Outfit';
+  font-family: "Outfit", sans-serif;
+  font-weight: 400; /* Regular weight */
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
@@ -19,6 +20,7 @@ header {
   position: relative;
   left: 100px;
 }
+
 header h1 {
   font-size: 24px;
   color: #ff9900;
@@ -34,19 +36,28 @@ header .user-info {
 }
 
 header .user-info span {
-  margin-right: 10px;
+  margin-right: -10px;
   color: #333;
 }
+
 header .user-info .icons {
   display: flex;
   gap: 30px;
 }
+
 .container {
   padding: 100px;
-  
 }
+
+.video-thumbnail {
+  width: 20px; /* Set the desired width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px; /* Optional: Add rounded corners */
+  display: block;
+}
+
 button {
-  font-family: 'outfit';
+  font-family: "Outfit", sans-serif;
   color: #ff9900;
   float: right;
   margin-right: 10px; /* Remove extra margin */
@@ -72,58 +83,41 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
-table {
+
+.table-container {
   width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
 }
 
-table thead {
-  background-color: #f5f5f5;
-}
-
-table th,
-table td {
-  padding: 15px;
+.table-container th,
+.table-container td {
+  border: 1px solid #ccc;
+  padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  white-space: normal;
 }
 
-table th {
-  color: #333;
+.table-container th {
+  background-color: #f4f4f4;
 }
-
-table td img {
-  width: 100px;
-  border-radius: 4px;
-}
-
-table .actions {
+.action-icons {
   display: flex;
-  gap: 10px;
+  align-items: center; /* Vertical alignment */
+  justify-content: center; /* Center icons horizontally */
+  gap: 8px; /* Consistent spacing between icons */
+  padding: 0; /* Remove extra padding */
 }
 
-table .actions button {
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.action-icons img {
+  height: 30px;
+  width: 30px;
 }
 
-table .actions .edit {
-  background-color: #4caf50;
-  color: #fff;
-}
 
-table .actions .delete {
-  background-color: #f44336;
-  color: #fff;
-}
-.highlight {
-  color: #ff9900;
-}
+
 .footer-background {
   position: fixed; /* Makes the footer stick to the viewport */
   bottom: 0; /* Aligns the footer to the bottom of the viewport */
@@ -136,7 +130,6 @@ table .actions .delete {
 }
 
 /* Responsive Styles */
-/* Responsive Styles */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -148,46 +141,24 @@ table .actions .delete {
   }
   header .user-info span {
     margin-left: 25px;
-    color: #333;
   }
-  header .user-info .icons {
-    display: flex;
-    gap: 30px;
+  header .user-info {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  .header .buttons {
-    justify-content: center;
-  }
-  .background-image {
-    position: relative;
-    left: 70px;
+  .user-info .icons {
+    margin-top: 10px;
   }
   .container {
-    padding: 50px 30px;
+    padding: 50px 20px;
   }
   button {
-    font-family: 'outfit';
-    color: #ff9900;
-    float: right;
-    margin-right: 10px;
-    padding: 20px;
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  .prompt-hub,
-  .new-videos {
-    align-self: flex-end; /* Align buttons to the right */
-  }
-  .logout-btn,
-  .settings-btn {
-    align-self: flex-end; /* Align buttons to the right */
-  }
-  table th,
-  table td {
     font-size: 14px;
+    padding: 10px;
   }
-  .footer-background {
-    text-align: left;
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
   }
 }
 @media (max-width: 480px) {
@@ -197,21 +168,27 @@ table .actions .delete {
   header h1 {
     font-size: 18px;
   }
+  header .user-info span {
+    margin-left: 10px;
+  }
+  .user-info {
+    gap: 10px;
+  }
   header .user-info {
-    gap: 20px;
-  }
-  header .buttons {
     flex-direction: column;
-    align-items: center;
-    gap: 5px;
+    align-items: flex-start;
+    gap: 10px;
   }
-  table th,
-  table td {
-    padding: 10px;
-    font-size: 12px;
+  .container {
+    padding: 20px 10px;
   }
   button {
     font-size: 12px;
-    padding: 5px 10px;
+    padding: 8px;
+  }
+  .table-container th,
+  .table-container td {
+    font-size: 14px;
+    padding: 8px;
   }
 }

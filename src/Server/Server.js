@@ -18,7 +18,7 @@ const db = new sqlite3.Database(dbPath);
 // Enable CORS
 const corsOptions = {
   origin: '*', // Allow all origins
-  methods: ['GET', 'POST', 'DELETE'],
+  methods: ['GET', 'POST', 'DELETE','PUT','PATCH','OPTIONS']
 };
 app.use(cors(corsOptions));
 
@@ -107,13 +107,12 @@ app.post('/login', (req, res) => {
   
 });
 
+//Upload new videos route
 db.run(
     `CREATE TABLE IF NOT EXISTS videos (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT,
       description TEXT,
-      category TEXT,
-      prompt TEXT
       video_url TEXT NOT NULL,
       upload_date DATETIME DEFAULT CURRENT_TIMESTAMP
     )`,
@@ -125,14 +124,15 @@ db.run(
   );
   
   // Handle POST request to save video data
+  
   app.post("/videos", (req, res) => {
     
-    const { title, description, category, prompt, video_url } = req.body;
+    const { title, description, video_url } = req.body;
     console.log("Received data:", req.body); // Log the received data
   
     // Insert the data into the database
-    const query = `INSERT INTO videos (title, description, category, prompt, video_url) VALUES (?, ?, ?, ?, ?)`;
-    db.run(query, [title, description, category, prompt, video_url], function (err) {
+    const query = `INSERT INTO videos (title, description, video_url) VALUES (?, ?, ?)`;
+    db.run(query, [title, description, video_url], function (err) {
       if (err) {
         console.error("Error inserting data:", err.message);
         return res.status(500).send("Failed to insert data");
@@ -141,6 +141,7 @@ db.run(
     });
   });
   
+  //Your videos route 
   app.get("/videos", (req, res) => {
     const query = "SELECT * FROM videos";
     db.all(query, [], (err, rows) => {
@@ -149,7 +150,7 @@ db.run(
         return res.status(500).send("Failed to fetch data");
       }
       res.json(rows); // Send the data as JSON
-    });
+    }); 
   });
 
   // DELETE endpoint for deleting video by ID
@@ -159,7 +160,7 @@ app.delete('/videos/:id', (req, res) => {
   // SQL query to delete the video by ID
   const sql = `DELETE FROM videos WHERE id = ?`;
 
-  db.run(sql, [videoId], function (err) {
+  db.run(sql, [videoId], function (err) { 
       if (err) {
           console.error('Error deleting video:', err);
           return res.status(500).send('Error deleting video.');
@@ -175,6 +176,63 @@ app.delete('/videos/:id', (req, res) => {
   });
 });
 
+
+//Promt hub route for creating database
+db.run(
+  `CREATE TABLE IF NOT EXISTS prompthub (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category TEXT,
+    prompt TEXT
+  )`,
+  (err) => {
+    if (err) {
+      console.error("Error creating table:", err.message);2
+    }
+  }
+);
+app.post("/prompthub", (req, res) => {
+    
+  const { category, prompt } = req.body;
+  console.log("Received data:", req.body); // Log the received data
+
+  // Insert the data into the database
+  const query = `INSERT INTO prompthub (category, prompt) VALUES (?, ?)`;
+  db.run(query, [ category, prompt ], function (err) {
+    if (err) {
+      console.error("Error inserting data:", err.message);
+      return res.status(500).send("Failed to insert data");
+    }
+    res.status(200).send("Data saved successfully");
+  });
+});
+
+app.get("/prompthub/:category", (req, res) => {
+  const { category } = req.params;
+  const query = `SELECT prompt FROM prompthub WHERE category = ?`;
+
+  db.all(query, [category], (err, rows) => {
+    if (err) {
+      console.error("Error fetching data:", err.message);
+      return res.status(500).send("Failed to fetch data");
+    }
+    res.json(rows);
+  });
+});
+
+// Fetch distinct categories
+app.get("/categories", (req, res) => {
+  const query = `SELECT DISTINCT category FROM prompthub`;
+
+  db.all(query, [], (err, rows) => {
+    if (err) {
+      console.error("Error fetching categories:", err.message);
+      return res.status(500).json({ error: "Failed to fetch categories", message: err.message });
+    }
+    res.json(rows.map((row) => row.category)); // Return a flat array of categories
+  });
+});
+
+// Call the function when the page loads
 
 // Start the server
 const PORT = 3000;
