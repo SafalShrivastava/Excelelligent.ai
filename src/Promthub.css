@@ -99,10 +99,9 @@ margin-left: 100px  ;}
 
 .category-section,
 .prompt-section {
-  /* margin-bottom: 2rem; */
+  margin-bottom: 1rem;
   position: relative; /* Ensure the section is the positioning context */
   padding: 20px;
-  border: 1px solid #fff;
   border-radius: 4px;
   margin-top: 20px;
 }
@@ -176,7 +175,6 @@ label {
 
 /* Footer */
 .footer-background {
-  position: fixed; /* Makes the footer stick to the viewport */
   bottom: 0; /* Aligns the footer to the bottom of the viewport */
   width: 100%; /* Ensures the footer spans the full width */
   background-color: #333; /* Background color for the footer */

@@ -18,7 +18,7 @@ const db = new sqlite3.Database(dbPath);
 // Enable CORS
 const corsOptions = {
   origin: '*', // Allow all origins
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'DELETE'],
 };
 app.use(cors(corsOptions));
 

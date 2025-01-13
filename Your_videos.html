@@ -143,25 +143,25 @@
                 deleteButton.textContent = "Delete";
                 deleteButton.className = "delete";
                 deleteButton.addEventListener("click", async () => {
-                const confirmation =await confirm(`Are you sure you want to delete the video: ${video.title}?`);
+                const confirmation =    await confirm(`Are you sure you want to delete the video: ${video.title}?`);
     if (confirmation) {
         try {
-            console.log(`id: ${video.id}`); // Use video.id here, not videos.id
-
-            // Send a delete request to the backend
-            const deleteResponse = await fetch(`http://localhost:3000/videos/${video.id}`, {
-                method: 'DELETE'
-            });
-            
-            // If delete is successful, remove the row from the table
-            if (deleteResponse.ok) {
-                row.remove(); // Remove the row from the DOM
-                alert(`Video "${video.title}" deleted successfully.`);
-            } else if (deleteResponse.status === 404) {
-                alert('Video not found.');
-            } else {
-                alert('Failed to delete video.');
-            }
+            fetch(`http://localhost:3000/videos/${video.id}`, {
+    method: 'DELETE'
+})
+.then(response => {
+    if (response.ok) {
+        row.remove(); // Remove the row from the DOM
+        alert(`Video "${video.title}" deleted successfully.`);
+    } else if (response.status === 404) {
+        alert('Video not found.');
+    } else {
+        alert('Failed to delete video.');
+    }
+}).catch(error => {
+    console.error('Error:', error);
+    alert('Error occurred');
+});
         } catch (error) {
             console.error('Error deleting video:', error);
             alert('Error deleting video.');
